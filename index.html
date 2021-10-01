@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang='en'>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+		<link rel="stylesheet" type="text/css" href="test.css"/>
+		<script type="text/javascript" src="test.js"></script>
+		
+		<!-- D3 -->
+		<script src="https://d3js.org/d3.v7.min.js"></script>
+		
+		<title>Test</title>
+	</head>   
+	<body>
+		<h1 class="header">Hello</h1>
+		<table class="block">
+			<tr>
+				<td class="block">1</td>
+				<td class="block">2</td>
+			</tr>
+			<tr>
+				<td class="block">3</td>
+				<td class="block">4</td>
+			</tr>
+		</table>
+		<button onclick='hello();'>click</button>
+		<button id='goodbyeButton'>goo</button>
+		
+		<div class="container">
+			
+		</div>
+		
+		<!-- Flex, Bootstrap, etc. -->
+		
+		<!-- SVG -->
+		<svg height="100" width="100">
+			<circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="red" />
+		</svg>
+		<svg height="100" width="100">
+			<rect width="300" height="100" style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)" />
+		</svg>
+		<svg height="100" width="100">
+			<line x1="0" y1="0" x2="200" y2="200" style="stroke:rgb(255,0,0);stroke-width:2" />
+		</svg>
+		<svg height="210" width="500">
+			<polygon points="200,10 250,190 160,210" style="fill:lime;stroke:purple;stroke-width:1" />
+		</svg>
+		
+		<!-- D3 -->
+		<svg id="drawingPad"></svg>
+		
+	</body>
+	
+	<script>
+		const svg = d3.select('#drawingPad');
+		
+		svg.append('circle')
+			.attr('cx', 50)
+			.attr('cy', 50)
+			.attr('r', 40)
+			.style('fill', 'lightblue')
+			.style('stroke', 'black');
+			
+		svg.append('rect')
+			.attr('width', 50)
+			.attr('height', 20)
+			.attr('x', 200)
+			.attr('y', 20);
+			
+			
+			
+			
+			
+			
+	</script>
+	
+	
+	
+	
+	
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
