@@ -1,83 +1,89 @@
-<!DOCTYPE html>
-<html lang='en'>
+<!DOCTYPE html> <!--Indicates HTML Page-->
+<html> <!-- HyperText Markup Language -->
+	<!-- Program Description
+	Intersticial Prototypes
+	-->
+	
+	<!--Head: contains metadata for document-->
 	<head>
-		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
-		<link rel="stylesheet" type="text/css" href="test.css"/>
-		<script type="text/javascript" src="test.js"></script>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8"> 
+		<title>Intersticial Prototype 1</title> 
 		
-		<!-- D3 -->
-		<script src="https://d3js.org/d3.v7.min.js"></script>
+		<!--Aframe -->
+		<script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
 		
-		<title>Test</title>
-	</head>   
+		<!--Javascript-->
+		<script type="text/javascript" src="target-marker.js"></script>
+		<script type="text/javascript" src="mover.js"></script>
+		<script type="text/javascript" src="movery.js"></script>
+		<script type="text/javascript" src="mover3.js"></script>
+	</head> 
+	<!--Body: content of document-->
 	<body>
-		<h1 class="header">Hello</h1>
-		<table class="block">
-			<tr>
-				<td class="block">1</td>
-				<td class="block">2</td>
-			</tr>
-			<tr>
-				<td class="block">3</td>
-				<td class="block">4</td>
-			</tr>
-		</table>
-		<button onclick='hello();'>click</button>
-		<button id='goodbyeButton'>goo</button>
+		<!--HTML text-->
+		<div style="font-family:verdana";>
 		
-		<div class="container">
+		<!--Aframe Scene (with Raycast for interaction)-->
+		<a-scene cursor="rayOrigin: mouse">
+			<!-- Interactable box 1-->
+			<a-box 
+				position="3 4 -2.49"
+				scale="5 5 0.1"
+				color="#4CC3D9"
+				target-marker
+				mover
+			></a-box>
+			<!-- Interactable box 2-->
+			<a-box 
+				position="3 -1 -2.49"
+				scale="5 5 0.1"
+				color="#d48790"
+				target-marker
+				movery
+			></a-box>
+			<!-- Interactable box 3-->
+			<a-box 
+				position="-2 -1 -2.49"
+				scale="5 5 0.1"
+				color="#f5e14e"
+				target-marker
+				mover3
+			></a-box>
 			
-		</div>
-		
-		<!-- Flex, Bootstrap, etc. -->
-		
-		<!-- SVG -->
-		<svg height="100" width="100">
-			<circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="red" />
-		</svg>
-		<svg height="100" width="100">
-			<rect width="300" height="100" style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)" />
-		</svg>
-		<svg height="100" width="100">
-			<line x1="0" y1="0" x2="200" y2="200" style="stroke:rgb(255,0,0);stroke-width:2" />
-		</svg>
-		<svg height="210" width="500">
-			<polygon points="200,10 250,190 160,210" style="fill:lime;stroke:purple;stroke-width:1" />
-		</svg>
-		
-		<!-- D3 -->
-		<svg id="drawingPad"></svg>
-		
+			<!-- Container -->
+			<a-box 
+				position="0.5 1.5 -2.5"
+				scale="10 10 0.1"
+				color="#0e2433"
+				target-marker
+			></a-box>
+			
+			<!-- Background -->
+			<a-plane 
+				position="0 0 -4" 
+				rotation="0 0 0" 
+				width="50"
+				height="50"
+				color="#7BC8A4"
+				target-marker
+			></a-plane>
+			
+			<!--Custom Camera Rig-->
+			<a-entity id="rig">
+				<a-entity camera position="0 2 5">
+				</a-entity>
+			</a-entity>
+		</a-scene>
 	</body>
-	
-	<script>
-		const svg = d3.select('#drawingPad');
-		
-		svg.append('circle')
-			.attr('cx', 50)
-			.attr('cy', 50)
-			.attr('r', 40)
-			.style('fill', 'lightblue')
-			.style('stroke', 'black');
-			
-		svg.append('rect')
-			.attr('width', 50)
-			.attr('height', 20)
-			.attr('x', 200)
-			.attr('y', 20);
-			
-			
-			
-			
-			
-			
-	</script>
-	
-	
-	
-	
-	
 </html>
+
+
+
+
+
+
+
+
 
 
 
