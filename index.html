@@ -1,22 +1,19 @@
 <!DOCTYPE html> <!--Indicates HTML Page-->
 <html> <!-- HyperText Markup Language -->
 	<!-- Program Description
-	Intersticial Prototypes
+	Psyche WebXR Informative Prototype
 	-->
 	
 	<!--Head: contains metadata for document-->
 	<head>
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8"> 
-		<title>Intersticial Prototype 1</title> 
+		<title>Informative Prototype 1</title> 
 		
 		<!--Aframe -->
 		<script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
 		
 		<!--Javascript-->
-		<script type="text/javascript" src="target-marker.js"></script>
-		<script type="text/javascript" src="mover.js"></script>
-		<script type="text/javascript" src="movery.js"></script>
-		<script type="text/javascript" src="mover3.js"></script>
+		<script type="text/javascript" src="togglehidden.js"></script>
 	</head> 
 	<!--Body: content of document-->
 	<body>
@@ -25,38 +22,103 @@
 		
 		<!--Aframe Scene (with Raycast for interaction)-->
 		<a-scene cursor="rayOrigin: mouse">
-			<!-- Interactable box 1-->
-			<a-box 
-				position="3 4 -2.49"
-				scale="5 5 0.1"
-				color="#4CC3D9"
-				target-marker
-				mover
-			></a-box>
-			<!-- Interactable box 2-->
-			<a-box 
-				position="3 -1 -2.49"
-				scale="5 5 0.1"
-				color="#d48790"
-				target-marker
-				movery
-			></a-box>
-			<!-- Interactable box 3-->
-			<a-box 
-				position="-2 -1 -2.49"
-				scale="5 5 0.1"
-				color="#f5e14e"
-				target-marker
-				mover3
-			></a-box>
+			<!--Custom Assets-->
+			<!--This tag preloads objects, spawn them in with the a-entity tag later-->
+			<a-assets>
+				<!-- Images -->
+				<img id="psycheAsteroidImg" src="/temp.png"/>
+				
+				<!-- Mixins: Preset Components that can be reused -->
+				<a-mixin
+					id="imageFrame"
+					geometry="primitive: plane;"
+					material="color: white; shader: flat"
+				></a-mixin>
+			</a-assets>
 			
-			<!-- Container -->
-			<a-box 
-				position="0.5 1.5 -2.5"
-				scale="10 10 0.1"
-				color="#0e2433"
-				target-marker
-			></a-box>
+			<!-- Asteroid -->
+			<a-entity 
+				material="src: #psycheAsteroidImg;" 
+				mixin="imageFrame"
+				position="0 0 -3" 
+				scale="8.0 8.0 8.0"
+			></a-entity>
+			
+			<!-- Text border -->
+			<a-entity id="textFrame" opacity="0.9" data-raycastable togglehidden>
+				<a-plane 
+					position="0 5 -3" 
+					rotation="0 0 0" 
+					width="12.15"
+					height="0.15"
+					color="#000000"
+				></a-plane>
+				<a-plane 
+					position="0 -5 -3" 
+					rotation="0 0 0" 
+					width="12.15"
+					height="0.15"
+					color="#000000"
+				></a-plane>
+				<a-plane 
+					position="-6 0 -3" 
+					rotation="0 0 90" 
+					width="10.0"
+					height="0.15"
+					color="#000000"
+				></a-plane>
+				<a-plane 
+					position="6 0 -3" 
+					rotation="0 0 90" 
+					width="10.0"
+					height="0.15"
+					color="#000000"
+				></a-plane>
+				<a-plane 
+					position="0 0 -3" 
+					rotation="0 0 0" 
+					width="12.0"
+					height="10.0"
+					color="#000000"
+					opacity="0.5"
+				></a-plane>
+				<a-entity id="psycheText">
+					<a-text 
+						value="Psyche" 
+						geometry="primitive: plane" 
+						material="color:blue; visible: false" 
+						position="-3.5 2.5 0.0"
+						width="12.0"
+						color="white" 
+						align="left"
+					></a-text>
+					<a-text 
+						value="This is information about Psyche. This should be professional and informative. It will probably be about this length.
+						
+						There will even be multiple paragraphs. But not too long since the user will only look at this for 5-10 seconds." 
+						geometry="primitive: plane" 
+						material="color:blue; visible: false" 
+						position="-3.5 0.2 0.0"
+						width="6.0"
+						color="white" 
+						align="left"
+						letter-spacing="2.0"
+						line-height="72.5"
+					></a-text>
+					<a-text 
+						value="Hide Text" 
+						geometry="primitive: plane" 
+						material="color:blue; visible: false" 
+						position="2.0 -2.25 1.0" 
+						rotation="0 0 0" 
+						color="white" 
+						align="center" 
+						data-raycastable 
+						animation__scale="property: scale; to: 1.2 1.2 1.2; dur: 200; startEvents: mouseenter"
+						animation__scale_reverse="property: scale; to: 1 1 1; dur: 200; startEvents: mouseleave"
+					></a-text>
+				</a-entity>
+			</a-entity>
 			
 			<!-- Background -->
 			<a-plane 
@@ -64,13 +126,12 @@
 				rotation="0 0 0" 
 				width="50"
 				height="50"
-				color="#7BC8A4"
-				target-marker
+				color="#1f1f26"
 			></a-plane>
 			
 			<!--Custom Camera Rig-->
 			<a-entity id="rig">
-				<a-entity camera position="0 2 5">
+				<a-entity camera position="0 0 5">
 				</a-entity>
 			</a-entity>
 		</a-scene>

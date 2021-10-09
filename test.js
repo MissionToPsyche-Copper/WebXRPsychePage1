@@ -1,3 +1,5 @@
+//Javascript logic
+
 //Print to Console
 console.log("test.js print");
 
