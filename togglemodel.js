@@ -1,5 +1,5 @@
 //Global Vars
-var toggle = 0;
+var toggle2 = 0; //0: 2d; 1: 3d
 
 //Register Aframe Component (all lower case)
 AFRAME.registerComponent('togglemodel', {
@@ -10,6 +10,7 @@ AFRAME.registerComponent('togglemodel', {
 		
 		//Get this element
 		let el = this.el;
+		console.log(el);
 		
 		//get all elements in text frame
 		var els = sceneEl.querySelectorAll('#textFrame');
@@ -26,14 +27,46 @@ AFRAME.registerComponent('togglemodel', {
 		
 		//Give component a function
 		this.toggleModel = function() {
-			console.log("changing model");
-			let currOpacity = psyche3d.getAttribute('opacity');
-			let params = {
-				property: 'opacity',
-				to: 1.0,
-				dur: 750,
-			};
-			psyche3d.setAttribute('animation', params);
+			console.log(el);
+			
+			if(el.id == "psyche2dbutton" && toggle2 == 1)
+			{
+				console.log("changing model2");
+				let currOpacity = psyche2d.getAttribute('opacity');
+				let params = {
+					property: 'opacity',
+					to: 1.0,
+					dur: 750,
+				};
+				psyche2d.setAttribute('animation', params);
+				let currOpacity2 = psyche3d.getAttribute('opacity');
+				let params2 = {
+					property: 'opacity',
+					to: 0.0,
+					dur: 750,
+				};
+				psyche3d.setAttribute('animation', params2);
+				toggle2 = 0;
+			}
+			else if (el.id == "psyche3dbutton" && toggle2 == 0)
+			{
+				console.log("changing model1");
+				let currOpacity = psyche2d.getAttribute('opacity');
+				let params = {
+					property: 'opacity',
+					to: 0.0,
+					dur: 750,
+				};
+				psyche2d.setAttribute('animation', params);
+				let currOpacity2 = psyche3d.getAttribute('opacity');
+				let params2 = {
+					property: 'opacity',
+					to: 1.0,
+					dur: 750,
+				};
+				psyche3d.setAttribute('animation', params2);
+				toggle2 = 1;
+			}
 		}
 		
 		//Add EventListener

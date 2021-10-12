@@ -115,7 +115,7 @@ AFRAME.registerComponent('togglehidden', {
 					console.log(currOpacity);
 					let params = {
 						property: 'opacity',
-						to: 0.5,
+						to: 0.0,
 						dur: 750,
 					};
 					threedb[i].setAttribute('animation', params);;
