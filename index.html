@@ -14,14 +14,18 @@
 		
 		<!--Javascript-->
 		<script type="text/javascript" src="togglehidden.js"></script>
+		<script type="text/javascript" src="togglemodel.js"></script>
+		<script type="text/javascript" src="test.js"></script>
 	</head> 
 	<!--Body: content of document-->
 	<body>
+		
+	
 		<!--HTML text-->
 		<div style="font-family:verdana";>
 		
 		<!--Aframe Scene (with Raycast for interaction)-->
-		<a-scene cursor="rayOrigin: mouse">
+		<a-scene id="ascene" cursor="rayOrigin: mouse" raycaster="objects: [data-raycastable]">
 			<!--Custom Assets-->
 			<!--This tag preloads objects, spawn them in with the a-entity tag later-->
 			<a-assets>
@@ -32,98 +36,168 @@
 				<a-mixin
 					id="imageFrame"
 					geometry="primitive: plane;"
-					material="color: white; shader: flat"
+					material="color: white; shader: flat; opacity: 1.0; transparent: true"
 				></a-mixin>
 			</a-assets>
 			
-			<!-- Asteroid -->
+			<!-- Asteroid 2D -->
 			<a-entity 
+				id="twodpsyche"
 				material="src: #psycheAsteroidImg;" 
 				mixin="imageFrame"
-				position="0 0 -3" 
+				position="0 0 -4" 
 				scale="8.0 8.0 8.0"
+				opacity="1.0"
 			></a-entity>
 			
+			<!-- Asteroid 3D -->
+			<a-box 
+				id="threedpsyche"
+				position="0 0 -5" 
+				rotation="0 0 0" 
+				scale="3.0 3.0 3.0"
+				color="#2f3d40"
+				opacity="0.0"
+			></a-box>
+			
+			<!-- Buttons -->
+			<a-text
+				id="psyche2dbutton"
+				value="2D"
+				position="-1.4 -5.5 -4" 
+				rotation="0 0 0" 
+				scale="3.0 3.0 3.0"
+				color="#ffffff"
+				align="left"
+				opacity="0.0"
+				data-raycastable 
+				togglemodel
+			></a-text>
+			<a-plane
+				id="psyche2dbutton"
+				position="-1.0 -5.5 -4" 
+				rotation="0 0 0" 
+				width="2.0"
+				height="1.0"
+				color="#000000"
+				opacity="0.0"
+				data-raycastable 
+				togglemodel
+			></a-plane>
+			<a-text
+				id="psyche3dbutton"
+				value="3D"
+				position="0.4 -5.5 -4" 
+				rotation="0 0 0" 
+				scale="3.0 3.0 3.0"
+				color="#ffffff"
+				align="left"
+				opacity="0.0"
+				data-raycastable 
+			></a-text>
+			<a-plane
+				id="psyche3dbutton"
+				position="1.0 -5.5 -4" 
+				rotation="0 0 0" 
+				width="2.0"
+				height="1.0"
+				color="#222426"
+				opacity="0.0"
+				data-raycastable 
+			></a-plane>
+			
 			<!-- Text border -->
-			<a-entity id="textFrame" opacity="0.9" data-raycastable togglehidden>
-				<a-plane 
-					position="0 5 -3" 
-					rotation="0 0 0" 
-					width="12.15"
-					height="0.15"
-					color="#000000"
-				></a-plane>
-				<a-plane 
-					position="0 -5 -3" 
-					rotation="0 0 0" 
-					width="12.15"
-					height="0.15"
-					color="#000000"
-				></a-plane>
-				<a-plane 
-					position="-6 0 -3" 
-					rotation="0 0 90" 
-					width="10.0"
-					height="0.15"
-					color="#000000"
-				></a-plane>
-				<a-plane 
-					position="6 0 -3" 
-					rotation="0 0 90" 
-					width="10.0"
-					height="0.15"
-					color="#000000"
-				></a-plane>
-				<a-plane 
-					position="0 0 -3" 
-					rotation="0 0 0" 
-					width="12.0"
-					height="10.0"
-					color="#000000"
-					opacity="0.5"
-				></a-plane>
-				<a-entity id="psycheText">
-					<a-text 
-						value="Psyche" 
-						geometry="primitive: plane" 
-						material="color:blue; visible: false" 
-						position="-3.5 2.5 0.0"
-						width="12.0"
-						color="white" 
-						align="left"
-					></a-text>
-					<a-text 
-						value="This is information about Psyche. This should be professional and informative. It will probably be about this length.
+			<a-plane
+				id="textFrame"
+				position="0 15 -3" 
+				rotation="0 0 0" 
+				width="10.15"
+				height="0.15"
+				color="#000000"
+				opacity="0.8"
+			></a-plane>
+			<a-plane 
+				id="textFrame"
+				position="0 5 -3" 
+				rotation="0 0 0" 
+				width="10.15"
+				height="0.15"
+				color="#000000"
+				opacity="0.8"
+			></a-plane>
+			<a-plane 
+				id="textFrame"
+				position="-5 10 -3" 
+				rotation="0 0 90" 
+				width="10.0"
+				height="0.15"
+				color="#000000"
+				opacity="0.8"
+			></a-plane>
+			<a-plane 
+				id="textFrame"
+				position="5 10 -3" 
+				rotation="0 0 90" 
+				width="10.0"
+				height="0.15"
+				color="#000000"
+				opacity="0.8"
+			></a-plane>
+			<a-plane 
+				id="textFrame"
+				position="0 10 -3" 
+				rotation="0 0 0" 
+				width="10.0"
+				height="10.0"
+				color="#000000"
+				opacity="0.8"
+			></a-plane>
+			<a-text 
+				id="textFrame"
+				value="Psyche" 
+				geometry="primitive: plane" 
+				material="color:blue; visible: false" 
+				position="-3.0 12.5 0.0"
+				width="12.0"
+				color="white" 
+				align="left"
+				opacity="0.8"
+			></a-text>
+			<a-text 
+				id="textFrame"
+				value="This is information about Psyche. This should be professional and informative. It will probably be about this length.
 						
-						There will even be multiple paragraphs. But not too long since the user will only look at this for 5-10 seconds." 
-						geometry="primitive: plane" 
-						material="color:blue; visible: false" 
-						position="-3.5 0.2 0.0"
-						width="6.0"
-						color="white" 
-						align="left"
-						letter-spacing="2.0"
-						line-height="72.5"
-					></a-text>
-					<a-text 
-						value="Hide Text" 
-						geometry="primitive: plane" 
-						material="color:blue; visible: false" 
-						position="2.0 -2.25 1.0" 
-						rotation="0 0 0" 
-						color="white" 
-						align="center" 
-						data-raycastable 
-						animation__scale="property: scale; to: 1.2 1.2 1.2; dur: 200; startEvents: mouseenter"
-						animation__scale_reverse="property: scale; to: 1 1 1; dur: 200; startEvents: mouseleave"
-					></a-text>
-				</a-entity>
-			</a-entity>
+				There will even be multiple paragraphs. But not too long since the user will only look at this for 5-10 seconds." 
+				geometry="primitive: plane" 
+				material="color:blue; visible: false" 
+				position="-3.0 10.2 0.0"
+				width="5.0"
+				color="white" 
+				align="left"
+				letter-spacing="2.0"
+				line-height="72.5"
+				opacity="0.8"
+			></a-text>
+			<a-text 
+				id="toggleButton"
+				value="Hide Text" 
+				geometry="primitive: plane" 
+				material="color:blue; visible: false" 
+				position="1.5 8.0 1.0" 
+				rotation="0 0 0" 
+				color="white" 
+				align="center" 
+				opacity="0.8"
+				data-raycastable 
+				togglehidden
+				animation__scale="property: scale; to: 1.2 1.2 1.2; dur: 200; startEvents: mouseenter"
+				animation__scale_reverse="property: scale; to: 1 1 1; dur: 200; startEvents: mouseleave"
+			></a-text>
 			
 			<!-- Background -->
 			<a-plane 
-				position="0 0 -4" 
-				rotation="0 0 0" 
+				position="0 0 -10" 
+				rotation="0 10 0" 
 				width="50"
 				height="50"
 				color="#1f1f26"

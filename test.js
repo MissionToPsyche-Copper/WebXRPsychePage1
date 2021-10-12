@@ -1,5 +1,20 @@
 //Javascript logic
 
+//Window Onload
+window.onload = function init()
+{
+	height = window.screen.height;
+	width = window.screen.width;
+	console.log(height + "x" + width);
+	
+	
+    //canvas = document.getElementById("ascene");
+	//height = canvas.height;
+	//width = canvas.width;
+	//console.log(height + "x" + width);
+}
+
+/*
 //Print to Console
 console.log("test.js print");
 
@@ -37,12 +52,6 @@ exampleFunc(3, 4); //function call
 var res = exampleFunc(3, 4); //store function result
 console.log(res);
 
-//Window Onload
-window.onload = function init()
-{
-	
-}
-
 //Button Type 1
 function hello()
 {
@@ -56,4 +65,4 @@ document.addEventListener('DOMContentLoaded', function() {
 function goodbye(){
 	alert("gg");
 }
-	
+*/
