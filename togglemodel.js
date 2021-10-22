@@ -32,18 +32,22 @@ AFRAME.registerComponent('togglemodel', {
 			if(el.id == "psyche2dbutton" && toggle2 == 1)
 			{
 				console.log("changing model2");
-				let currOpacity = psyche2d.getAttribute('opacity');
+				let currPosition = psyche2d.getAttribute('position');
 				let params = {
-					property: 'opacity',
-					to: 1.0,
-					dur: 750,
+					property: 'position',
+					to: {
+						x: currPosition.x,
+						y: currPosition.y - 100,
+						z: currPosition.z
+					},
+					dur: 5,
 				};
 				psyche2d.setAttribute('animation', params);
 				let currOpacity2 = psyche3d.getAttribute('opacity');
 				let params2 = {
 					property: 'opacity',
 					to: 0.0,
-					dur: 750,
+					dur: 5,
 				};
 				psyche3d.setAttribute('animation', params2);
 				toggle2 = 0;
@@ -51,18 +55,22 @@ AFRAME.registerComponent('togglemodel', {
 			else if (el.id == "psyche3dbutton" && toggle2 == 0)
 			{
 				console.log("changing model1");
-				let currOpacity = psyche2d.getAttribute('opacity');
+				let currPosition = psyche2d.getAttribute('position');
 				let params = {
-					property: 'opacity',
-					to: 0.0,
-					dur: 750,
+					property: 'position',
+					to: {
+						x: currPosition.x,
+						y: currPosition.y + 100,
+						z: currPosition.z
+					},
+					dur: 5,
 				};
 				psyche2d.setAttribute('animation', params);
 				let currOpacity2 = psyche3d.getAttribute('opacity');
 				let params2 = {
 					property: 'opacity',
 					to: 1.0,
-					dur: 750,
+					dur: 5,
 				};
 				psyche3d.setAttribute('animation', params2);
 				toggle2 = 1;

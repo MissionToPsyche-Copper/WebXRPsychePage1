@@ -3,10 +3,21 @@
 //Window Onload
 window.onload = function init()
 {
+	
+	
+	//get coordinates
+	var x = event.clientX;
+	var y = event.clientY;
+	
+	console.log("client width " + x);
+	console.log("client height " + y);
+	
+	
+	/*
 	height = window.screen.height;
 	width = window.screen.width;
 	console.log(height + "x" + width);
-	
+	*/
 	
     //canvas = document.getElementById("ascene");
 	//height = canvas.height;
