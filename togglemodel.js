@@ -16,8 +16,10 @@ AFRAME.registerComponent('togglemodel', {
 		var els = sceneEl.querySelectorAll('#textFrame');
 		
 		//get model buttons
-		var twodb = sceneEl.querySelectorAll('#psyche2dbutton')
-		var threedb = sceneEl.querySelectorAll('#psyche3dbutton')
+		var twodbBG = sceneEl.querySelector('#psyche2dbuttonBG')
+		var threedbBG = sceneEl.querySelector('#psyche3dbuttonBG')
+		var twodbText = sceneEl.querySelector('#psyche2dbuttonText')
+		var threedbText = sceneEl.querySelector('#psyche3dbuttonText')
 		
 		//get 2d model
 		var psyche2d = sceneEl.querySelector('#twodpsyche')
@@ -29,7 +31,7 @@ AFRAME.registerComponent('togglemodel', {
 		this.toggleModel = function() {
 			console.log(el);
 			
-			if(el.id == "psyche2dbutton" && toggle2 == 1)
+			if((el.id == "psyche2dbuttonBG" || el.id == "psyche2dbuttonText") && toggle2 == 1)
 			{
 				console.log("changing model2");
 				let currPosition = psyche2d.getAttribute('position');
@@ -51,8 +53,11 @@ AFRAME.registerComponent('togglemodel', {
 				};
 				psyche3d.setAttribute('animation', params2);
 				toggle2 = 0;
+				
+				twodbBG.setAttribute('color', '#000000');
+				threedbBG.setAttribute('color', '#222426');
 			}
-			else if (el.id == "psyche3dbutton" && toggle2 == 0)
+			else if ((el.id == "psyche3dbuttonBG" || el.id == "psyche3dbuttonText") && toggle2 == 0)
 			{
 				console.log("changing model1");
 				let currPosition = psyche2d.getAttribute('position');
@@ -74,6 +79,9 @@ AFRAME.registerComponent('togglemodel', {
 				};
 				psyche3d.setAttribute('animation', params2);
 				toggle2 = 1;
+				
+				twodbBG.setAttribute('color', '#222426');
+				threedbBG.setAttribute('color', '#000000');
 			}
 		}
 		

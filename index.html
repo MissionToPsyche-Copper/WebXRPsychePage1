@@ -11,9 +11,12 @@
 		
 		<!--Aframe -->
 		<script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-		
+		<!--<script src="https://unpkg.com/aframe-click-drag-component"></script>
+		<script>
+			registerAframeClickDragComponent(window.AFRAME);
+		</script>-->
+
 		<!--Javascript-->
-		
 		<script type="text/javascript" src="togglehidden.js"></script>
 		<script type="text/javascript" src="togglemodel.js"></script>
 		<script type="text/javascript" src="rotateasteroid.js"></script>
@@ -64,7 +67,7 @@
 			
 			<!-- Buttons -->
 			<a-text
-				id="psyche2dbutton"
+				id="psyche2dbuttonText"
 				value="2D"
 				position="-1.4 -5.5 -4" 
 				rotation="0 0 0" 
@@ -72,22 +75,20 @@
 				color="#ffffff"
 				align="left"
 				opacity="0.0"
-				data-raycastable 
 				togglemodel
 			></a-text>
 			<a-plane
-				id="psyche2dbutton"
+				id="psyche2dbuttonBG"
 				position="-1.0 -5.5 -4" 
 				rotation="0 0 0" 
 				width="2.0"
 				height="1.0"
 				color="#000000"
 				opacity="0.0"
-				data-raycastable 
 				togglemodel
 			></a-plane>
 			<a-text
-				id="psyche3dbutton"
+				id="psyche3dbuttonText"
 				value="3D"
 				position="0.4 -5.5 -4" 
 				rotation="0 0 0" 
@@ -95,18 +96,16 @@
 				color="#ffffff"
 				align="left"
 				opacity="0.0"
-				data-raycastable 
 				togglemodel
 			></a-text>
 			<a-plane
-				id="psyche3dbutton"
+				id="psyche3dbuttonBG"
 				position="1.0 -5.5 -4" 
 				rotation="0 0 0" 
 				width="2.0"
 				height="1.0"
 				color="#222426"
 				opacity="0.0"
-				data-raycastable 
 				togglemodel
 			></a-plane>
 			
@@ -161,7 +160,7 @@
 				value="Psyche" 
 				geometry="primitive: plane" 
 				material="color:blue; visible: false" 
-				position="-3.0 12.5 0.0"
+				position="-3.0 12.75 0.0"
 				width="12.0"
 				color="white" 
 				align="left"
@@ -169,12 +168,11 @@
 			></a-text>
 			<a-text 
 				id="textFrame"
-				value="This is information about Psyche. This should be professional and informative. It will probably be about this length.
-						
-				There will even be multiple paragraphs. But not too long since the user will only look at this for 5-10 seconds." 
+				value="Psyche is the name of an asteroid orbiting the Sun between Mars and Jupiter and the name of a NASA space mission to visit that asteroid, led by ASU. Psyche is the first mission to a world likely made largely of metal rather than rock or ice.
+				What gives asteroid Psyche great scientific interest is that it is likely rich in metal. It may consist largely of metal from the core of a planetesimal, one of the building blocks of the Sun’s planetary system. At Psyche scientists will explore, for the first time ever, a world made not of rock or ice, but rich in metal." 
 				geometry="primitive: plane" 
 				material="color:blue; visible: false" 
-				position="-3.0 10.2 0.0"
+				position="-3.0 9.75 -0.25"
 				width="5.0"
 				color="white" 
 				align="left"
@@ -187,7 +185,7 @@
 				value="Hide Text" 
 				geometry="primitive: plane" 
 				material="color:blue; visible: false" 
-				position="1.5 8.0 1.0" 
+				position="1.5 7.750 1.0" 
 				rotation="0 0 0" 
 				color="white" 
 				align="center" 
@@ -209,9 +207,8 @@
 			
 			<!--Custom Camera Rig-->
 			<a-entity id="rig">
-				<a-entity camera position="0 0 5">
-					<!--<a-cursor opacity="0"></a-cursor>-->
-				</a-entity>
+				<a-camera position="0 0 5" look-controls="enabled:false">
+				</a-camera>
 			</a-entity>
 		</a-scene>
 	</body>

@@ -6,12 +6,14 @@ window.onload = function init()
 	
 	
 	//get coordinates
-	var x = event.clientX;
-	var y = event.clientY;
+	//var x = event.clientX;
+	//var y = event.clientY;
 	
-	console.log("client width " + x);
-	console.log("client height " + y);
+	//console.log("client width " + x);
+	//console.log("client height " + y);
 	
+	console.log("client width " + window.innerWidth);
+	console.log("client height " + window.innerHeight);
 	
 	/*
 	height = window.screen.height;
