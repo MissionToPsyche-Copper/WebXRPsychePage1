@@ -45,13 +45,31 @@ AFRAME.registerComponent('togglemodel', {
 					dur: 5,
 				};
 				psyche2d.setAttribute('animation', params);
-				let currOpacity2 = psyche3d.getAttribute('modelOpacity');
+				
+				console.log("t3");
+				console.log(psyche3d.getAttribute('position'));
+				
+				let currPosition22 = psyche3d.getAttribute('position');
 				let params2 = {
-					property: 'modelOpacity',
-					to: 0.0,
+					property: 'position',
+					to: {
+						x: currPosition.x,
+						y: currPosition.y + 100,
+						z: currPosition.z
+					},
 					dur: 5,
 				};
 				psyche3d.setAttribute('animation', params2);
+				
+				psyche3d.object3D.rotation.set(0,0,0);
+				
+				//psyche3d.setAttribute('rotation', {x: 0, y: 0, z: 0});
+				//psyche3d.setAttribute('gltf-model', 'assets/Psyche_Asteroid.gltf');
+				
+				console.log("t4");
+				console.log(psyche3d.getAttribute('position'));
+				
+				
 				toggle2 = 0;
 				
 				twodbBG.setAttribute('color', '#000000');
@@ -71,14 +89,29 @@ AFRAME.registerComponent('togglemodel', {
 					dur: 5,
 				};
 				psyche2d.setAttribute('animation', params);
-				let currOpacity2 = psyche3d.getAttribute('opacity');
+				
+				console.log("t1");
+				console.log(psyche3d.getAttribute('position'));
+				
+				let currPosition2 = psyche3d.getAttribute('position');
 				let params2 = {
-					property: 'opacity',
-					to: 1.0,
+					property: 'position',
+					to: {
+						x: currPosition.x,
+						y: currPosition.y + 0,
+						z: currPosition.z
+					},
 					dur: 5,
 				};
 				psyche3d.setAttribute('animation', params2);
+				
+				
+				psyche3d.object3D.rotation.set(0,0,0);
+				//psyche3d.setAttribute('rotation', {x: 0, y: 0, z: 0});
 				toggle2 = 1;
+				
+				console.log("t2");
+				console.log(psyche3d.getAttribute('position'));
 				
 				twodbBG.setAttribute('color', '#222426');
 				threedbBG.setAttribute('color', '#000000');

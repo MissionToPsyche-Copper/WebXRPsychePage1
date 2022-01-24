@@ -6,9 +6,15 @@
 	
 	<!--Head: contains metadata for document-->
 	<head>
+		<!-- Meta Data -->
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8"> 
+		
+		<!-- Title -->
 		<title>Informative Prototype 1</title> 
 		
+		<!-- Favicon -->
+		<link rel="shortcut icon" type="image/jpg" href="assets/favicon.ico"/>
+
 		<!--Aframe -->
 		<script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
 		<!--Hammer.js for Touch Gestures -->
@@ -22,8 +28,6 @@
 		<script type="text/javascript" src="togglehidden.js"></script>
 		<script type="text/javascript" src="togglemodel.js"></script>
 		<script type="text/javascript" src="rotateasteroid.js"></script>
-		
-		<script type="text/javascript" src="modelOpacity.js"></script>
 		<script type="text/javascript" src="test.js"></script>
 	</head> 
 	<!--Body: content of document-->
@@ -39,7 +43,7 @@
 				<!-- 3D Models -->
 				<a-asset-item 
 					id="psyche_model" 
-					src="/assets/Psyche_Asteroid.gltf" 
+					src="/assets/asteroid.gltf" 
 					crossorigin="anonymous"
 				></a-asset-item>
 				<!-- Images -->
@@ -56,6 +60,30 @@
 				></a-mixin>
 			</a-assets>
 			
+			<!-- Ambient Light -->
+			<a-entity 
+				light="type: ambient; color: #ffffff ; intensity: 1.0"
+			></a-entity>
+			
+			<!-- Directional Light
+			<a-entity 
+				light="type: directional; color: #ffffff; intensity: 1.0" 
+				position="1 1 1"
+			></a-entity> -->
+			<a-light 
+				type="directional" 
+				position="5 5 5" 
+				rotation="0 0 0" 
+				target="#directionaltarget"
+				intensity="1.0"
+				color="#ffffff"
+				>
+				<a-entity 
+					id="directionaltarget" 
+					position="0 0 -4"
+				></a-entity>
+			</a-light>
+			
 			<!-- Asteroid 2D -->
 			<a-entity 
 				id="twodpsyche"
@@ -70,18 +98,17 @@
 			
 			<a-entity 
 				gltf-model="#psyche_model"
-			
-			
+				
 				id="threedpsyche"
-				position="0 0 -5" 
+				position="0 -100 -4" 
 				rotation="0 0 0" 
-				scale="23.0 23.0 23.0"
-				model-opacity="0.0"
-				modelOpacity
+				scale="2.5 2.5 2.5"
 				data-raycastable 
 				rotateasteroid
 			
 			></a-entity>
+			
+			
 			<!--
 			<a-box 
 				id="threedpsyche"
@@ -227,11 +254,11 @@
 			
 			<!-- Background -->
 			<a-plane 
+				src= "/assets/2k_stars_milky_way.jpg"
 				position="0 0 -10" 
-				rotation="0 10 0" 
-				width="100"
-				height="100"
-				color="#1f1f26"
+				rotation="0 0 0" 
+				width="50"
+				height="50"
 			></a-plane>
 			
 			<!--Custom Camera Rig-->

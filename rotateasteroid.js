@@ -13,19 +13,94 @@ AFRAME.registerComponent('rotateasteroid', {
 	//Initialize function
 	init : function(){
 		//get scene element
-		var sceneEl = document.querySelector('a-scene')
+		var sceneEl = document.querySelector('a-scene');
 		
 		//Get this element
 		el = this.el;
 		console.log(el);
-	
+		
+		//Listen for touch event
+		sceneEl.addEventListener('touchmove', event => {touchRotate(event)});
+		
+		//Hammer.js for touch gestures
+		//const hammerManager = new Hammer.Manager(sceneEl)
+		const hammerManager = new Hammer(sceneEl);
+		
+		//add pinch gesture
+		const pinch = new Hammer.Pinch()
+		hammerManager.add(pinch)
+		
+		/*
+		//pan event
+		hammerManager.on('pan', (ev) => {
+			let rotation = el.getAttribute("rotation");
+			console.log(ev);
+			/*switch(ev.direction){
+				case 2:
+					rotation.y = rotation.y - 1.4;
+					break;
+				case 4:
+					rotation.y = rotation.y + 1.4;
+					break;
+				case 8:
+					rotation.x = rotation.x - 1.4;
+					break;
+				case 16:
+					rotation.x = rotation.x + 1.4;
+				break;
+				default:
+					break;
+			}
+			
+			/*rotation.x = rotation.x - (0.01)*ev.deltaY;
+			rotation.y = rotation.y + (0.01)*ev.deltaX;
+			
+			
+			el.setAttribute("rotation", rotation);
+		});*/
+		
+		//rotate on touch move event
+		const touchRotate = event => {
+		
+			const currentRotate = el.getAttribute('rotation');
+		
+			let touches = event.changedTouches;
+
+			for (touch of touches) 
+			{
+				el.setAttribute('rotation', {
+					'x': currentRotate.x - touch.pageY*0.01,
+					'y': currentRotate.y + touch.pageX*0.01,
+					'z': currentRotate.z
+				})
+			}
+		}
+		
+		//pinch event
+		hammerManager.on('pinch', function(ev) {
+			const currentScale = el.getAttribute('scale');
+			const newScale = (ev.scale - 1)*0.01;
+			
+			el.setAttribute('scale', {
+				'x': currentScale.x + newScale,
+				'y': currentScale.y + newScale,
+				'z': currentScale.z + newScale
+			})
+		})
+		
+		/*
 		//get mouse/touch info
 		this.ifMouseDown = false;
 		this.xCoord = 0; 
 		this.yCoord = 0;
 		
+		document.addEventListener('mousedown',this.OnMouseDown.bind(this));
+		document.addEventListener('mouseup',this.OnMouseUp.bind(this));
+		document.addEventListener('touchmove',this.OnTouchMove.bind(this));
+		*/
+		/*
 		//mousedown/up/move + touch event listeners
-		/*document.addEventListener('mousedown',this.OnDocumentMouseDown.bind(this));
+		document.addEventListener('mousedown',this.OnDocumentMouseDown.bind(this));
 		document.addEventListener('mouseup',this.OnDocumentMouseUp.bind(this));
 		document.addEventListener('mousemove',this.OnDocumentMouseMove.bind(this));
 		document.addEventListener('touchmove',this.OnDocumentTouchMove.bind(this));*/
@@ -34,37 +109,42 @@ AFRAME.registerComponent('rotateasteroid', {
 		document.addEventListener('mousemove',this.OnMouseMove.bind(this));
 		document.addEventListener('touchmove',this.OnTouchMove.bind(this));
 		*/
+		
 		//Hammerhead.js for touch gestures
-		
-		var hammertime = new Hammer(sceneEl);
+		/*
+		var hammer = new Hammer(sceneEl);
 		var pinch = new Hammer.Pinch(); //pinch
-		hammertime.add(pinch); // add pinch to Manager instance
+		hammer.add(pinch); // add pinch to Manager instance
 		
-		hammertime.on('pan', (ev) => {
+		hammer.on('pan', (ev) => {
 			let rotation = el.getAttribute("rotation")
-			switch(ev.direction) {
-			  case 4:
-				rotation.y = rotation.y + 1.4
-				break;
-			  case 2:
-				rotation.y = rotation.y - 1.4
-				break;
-			  case 16:
-				rotation.x = rotation.x + 1.4
-				break;
-			  case 8:
-				rotation.x = rotation.x - 1.4
-				break;
-			  default:
-				break;
+			console.log("?");
+			switch(ev.direction){
+				case 2:
+					rotation.y = rotation.y - 1.4
+					break;
+				case 4:
+					rotation.y = rotation.y + 1.4
+					break;
+				case 8:
+					rotation.x = rotation.x - 1.4
+					break;
+				case 16:
+					rotation.x = rotation.x + 1.4
+					break;
+				default:
+					break;
 			}
 			el.setAttribute("rotation", rotation)
 		});
 		
-		hammertime.on("pinch", (ev) => {
-			let scale = {x:ev.scale*23.0, y:ev.scale*23.0, z:ev.scale*23.0}
+		hammer.on("pinch", (ev) => {
+			let scale = {x:ev.scale, y:ev.scale, z:ev.scale}
 			el.setAttribute("scale", scale);
-		});
+		});*/
+		
+		
+		
 	},
 	
 	
