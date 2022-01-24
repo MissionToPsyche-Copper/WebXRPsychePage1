@@ -45,9 +45,9 @@ AFRAME.registerComponent('togglemodel', {
 					dur: 5,
 				};
 				psyche2d.setAttribute('animation', params);
-				let currOpacity2 = psyche3d.getAttribute('opacity');
+				let currOpacity2 = psyche3d.getAttribute('modelOpacity');
 				let params2 = {
-					property: 'opacity',
+					property: 'modelOpacity',
 					to: 0.0,
 					dur: 5,
 				};

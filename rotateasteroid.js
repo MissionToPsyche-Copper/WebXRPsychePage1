@@ -16,94 +16,65 @@ AFRAME.registerComponent('rotateasteroid', {
 		var sceneEl = document.querySelector('a-scene')
 		
 		//Get this element
-		//let el = this.el;
 		el = this.el;
-	
 		console.log(el);
-		
-		//Give component a function
-		/*this.rotateAst = function() {
-			
-		}*/
 	
 		//get mouse/touch info
 		this.ifMouseDown = false;
-		this.xCord = 0; 
-		this.yCord = 0;
+		this.xCoord = 0; 
+		this.yCoord = 0;
 		
-		
-		//mousedown/up/move event listeners
-		document.addEventListener('mousedown',this.OnDocumentMouseDown.bind(this));
+		//mousedown/up/move + touch event listeners
+		/*document.addEventListener('mousedown',this.OnDocumentMouseDown.bind(this));
 		document.addEventListener('mouseup',this.OnDocumentMouseUp.bind(this));
 		document.addEventListener('mousemove',this.OnDocumentMouseMove.bind(this));
-		document.addEventListener('touchmove',this.OnDocumentTouchMove.bind(this));
+		document.addEventListener('touchmove',this.OnDocumentTouchMove.bind(this));*/
+		/*document.addEventListener('mousedown',this.OnMouseDown.bind(this));
+		document.addEventListener('mouseup',this.OnMouseUp.bind(this));
+		document.addEventListener('mousemove',this.OnMouseMove.bind(this));
+		document.addEventListener('touchmove',this.OnTouchMove.bind(this));
+		*/
+		//Hammerhead.js for touch gestures
 		
-		//document.addEventListener('mousedown', onMouseDown);
-		//document.addEventListener('mouseup', onMouseUp);
-		//document.addEventListener('mousemove', onMouseMove);
+		var hammertime = new Hammer(sceneEl);
+		var pinch = new Hammer.Pinch(); //pinch
+		hammertime.add(pinch); // add pinch to Manager instance
 		
-		/*
-		el.addEventListener('mouseenter', function () {
-			el.setAttribute('color', 'purple');
-		});
-		
-		el.addEventListener('mouseleave', function () {
-			el.setAttribute('color', 'yellow');
-		});
-		
-		el.addEventListener('mousedown', function () {
-			el.setAttribute('color', 'red');
-			this.ifMouseDown = true;
-		});
-		
-		el.addEventListener('mouseup', function () {
-			el.setAttribute('color', 'blue');
-			this.ifMouseDown = false;
-		});*/
-		/*
-		el.addEventListener('mousemove', function () {
-			if(this.mousedown)
-			{
-				console.log("here");
-				el.setAttribute('color', 'green');
+		hammertime.on('pan', (ev) => {
+			let rotation = el.getAttribute("rotation")
+			switch(ev.direction) {
+			  case 4:
+				rotation.y = rotation.y + 1.4
+				break;
+			  case 2:
+				rotation.y = rotation.y - 1.4
+				break;
+			  case 16:
+				rotation.x = rotation.x + 1.4
+				break;
+			  case 8:
+				rotation.x = rotation.x - 1.4
+				break;
+			  default:
+				break;
 			}
-			else
-			{
-				console.log("no");
-			}
-		});*/
-		/*
-		el.addEventListener('mousedown', function () {
-			el.setAttribute('color', 'red');
-			
-			this.ifMouseDown = true;
-			
-			//get coordinates
-			this.xCoord = event.clientX;
-			this.yCoord = event.clientY;
-			
-			console.log("MouseDown event.clientX " + event.clientX);
-			console.log("MouseDown event.clientY " + event.clientY);
+			el.setAttribute("rotation", rotation)
 		});
-		el.addEventListener('mouseup', function () {
-			el.setAttribute('color', 'blue');
-			this.ifMouseDown = false;
-		});*/
 		
-		//Add EventListener
-		//this.el.addEventListener('click', this.rotateAst);
+		hammertime.on("pinch", (ev) => {
+			let scale = {x:ev.scale*23.0, y:ev.scale*23.0, z:ev.scale*23.0}
+			el.setAttribute("scale", scale);
+		});
 	},
 	
 	
 	//mouse down event
-	OnDocumentMouseDown : function(event)
+	//OnDocumentMouseDown : function(event)
+	OnMouseDown : function(event)
 	{
         el.setAttribute('color', 'red');
 		
-		//if ()
-		//{
-			this.ifMouseDown = true;
-		//}
+		this.ifMouseDown = true;
 		
 		//get coordinates
 		this.xCoord = event.clientX;
@@ -114,7 +85,8 @@ AFRAME.registerComponent('rotateasteroid', {
 	},
 	
 	//mouse up event
-	OnDocumentMouseUp : function()
+	//OnDocumentMouseUp : function()
+	OnMouseUp : function()
 	{
         el.setAttribute('color', 'blue');
 		
@@ -123,34 +95,52 @@ AFRAME.registerComponent('rotateasteroid', {
 	
 	
 	//touch move event
-	OnDocumentTouchMove : function(event)
+	//OnDocumentTouchMove : function(e)
+	OnTouchMove : function(e)
 	{
+		//touch coordinates
+		var evt = (typeof e.originalEvent === 'undefined') ? e : e.originalEvent;
+		var touch = evt.touches[0] || evt.changedTouches[0];
+		
+		
 		//check mouse down
 		if(this.ifMouseDown)
 		{
-			console.log("moving");
-			el.setAttribute('color', 'green');
+			console.log("touch moving");
+			el.setAttribute('color', 'cyan');
 			
 			//get mouse position
-			var xTemp = event.clientX - this.xCoord;
-			var yTemp = event.clientY - this.yCoord;
+			//var xTemp = touch.pageX - this.xCoord;
+			//var yTemp = touch.pageY - this.yCoord;
+			var xTemp = touch.pageX;// - this.xCoord;
+			var yTemp = touch.pageY;// - this.yCoord;
 		
 			console.log("MouseDown xTemp " + xTemp);
 			console.log("MouseDown yTemp " + yTemp);
-			
+			/*
 			//rotate object by x and y speeds
-			//el.object3D.rotate(yTemp*this.data.ySpeed/1000,xTemp*this.data.xSpeed/1000, 0);
-			el.object3D.rotateY(xTemp*this.data.xSpeed/1000);
-			el.object3D.rotateX(yTemp*this.data.ySpeed/1000);
+			el.object3D.rotateX(yTemp*this.data.ySpeed/100000);
+			el.object3D.rotateY(xTemp*this.data.xSpeed/100000);
+			*/
+			if(Math.abs(yTemp)<Math.abs(xTemp))
+			{
+				el.object3D.rotateY(xTemp*this.data.ySpeed/100000);
+			}
+			else
+			{
+				el.object3D.rotateX(yTemp*this.data.xSpeed/100000);
+			}
+			
 			
 			//set coordinates
-			this.xCoord = event.clientX;
-			this.yCoord = event.clientY;
+			this.xCoord = touch.pageX;
+			this.yCoord = touch.pageY;
 		}
 	},
 
 	//mouse move event
-	OnDocumentMouseMove : function(event)
+	//OnDocumentMouseMove : function(event)
+	OnMouseMove : function(event)
 	{
 		//check mouse down
 		if(this.ifMouseDown)
@@ -164,11 +154,21 @@ AFRAME.registerComponent('rotateasteroid', {
 		
 			console.log("MouseDown xTemp " + xTemp);
 			console.log("MouseDown yTemp " + yTemp);
-			
+			/*
 			//rotate object by x and y speeds
 			//el.object3D.rotate(yTemp*this.data.ySpeed/1000,xTemp*this.data.xSpeed/1000, 0);
 			el.object3D.rotateY(xTemp*this.data.xSpeed/1000);
 			el.object3D.rotateX(yTemp*this.data.ySpeed/1000);
+			*/
+			
+			if(Math.abs(yTemp)<Math.abs(xTemp))
+			{
+				el.object3D.rotateY(xTemp*this.data.ySpeed/1000);
+			}
+			else
+			{
+				el.object3D.rotateX(yTemp*this.data.xSpeed/1000);
+			}
 			
 			//set coordinates
 			this.xCoord = event.clientX;

@@ -11,6 +11,8 @@
 		
 		<!--Aframe -->
 		<script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+		<!--Hammer.js for Touch Gestures -->
+		<script src="https://hammerjs.github.io/dist/hammer.js"></script>
 		<!--<script src="https://unpkg.com/aframe-click-drag-component"></script>
 		<script>
 			registerAframeClickDragComponent(window.AFRAME);
@@ -20,6 +22,8 @@
 		<script type="text/javascript" src="togglehidden.js"></script>
 		<script type="text/javascript" src="togglemodel.js"></script>
 		<script type="text/javascript" src="rotateasteroid.js"></script>
+		
+		<script type="text/javascript" src="modelOpacity.js"></script>
 		<script type="text/javascript" src="test.js"></script>
 	</head> 
 	<!--Body: content of document-->
@@ -32,9 +36,18 @@
 			<!--Custom Assets-->
 			<!--This tag preloads objects, spawn them in with the a-entity tag later-->
 			<a-assets>
+				<!-- 3D Models -->
+				<a-asset-item 
+					id="psyche_model" 
+					src="/assets/Psyche_Asteroid.gltf" 
+					crossorigin="anonymous"
+				></a-asset-item>
 				<!-- Images -->
-				<img id="psycheAsteroidImg" src="temp.png" crossorigin="anonymous"/>
-				
+				<img 
+					id="psycheAsteroidImg" 
+					src="temp.png" 
+					crossorigin="anonymous"
+				/>
 				<!-- Mixins: Preset Components that can be reused -->
 				<a-mixin
 					id="imageFrame"
@@ -54,6 +67,22 @@
 			></a-entity>
 			
 			<!-- Asteroid 3D -->
+			
+			<a-entity 
+				gltf-model="#psyche_model"
+			
+			
+				id="threedpsyche"
+				position="0 0 -5" 
+				rotation="0 0 0" 
+				scale="23.0 23.0 23.0"
+				model-opacity="0.0"
+				modelOpacity
+				data-raycastable 
+				rotateasteroid
+			
+			></a-entity>
+			<!--
 			<a-box 
 				id="threedpsyche"
 				position="0 0 -5" 
@@ -64,7 +93,7 @@
 				data-raycastable 
 				rotateasteroid
 			></a-box>
-			
+			-->
 			<!-- Buttons -->
 			<a-text
 				id="psyche2dbuttonText"
