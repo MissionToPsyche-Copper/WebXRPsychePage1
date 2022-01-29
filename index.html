@@ -1,8 +1,7 @@
 <!DOCTYPE html> <!--Indicates HTML Page-->
 <html> <!-- HyperText Markup Language -->
 	<!-- Program Description
-	Psyche WebXR Informative Prototype
-	
+	Psyche WebXR Informative WebPage
 	-->
 	
 	<!--Head: contains metadata for document-->
@@ -11,7 +10,7 @@
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8"> 
 		
 		<!-- Title -->
-		<title>Informative Prototype 1</title> 
+		<title>Psyche Informative Webpage</title> 
 		
 		<!-- Favicon -->
 		<link rel="shortcut icon" type="image/jpg" href="assets/favicon.ico"/>
@@ -29,7 +28,6 @@
 		<script type="text/javascript" src="togglehidden.js"></script>
 		<script type="text/javascript" src="togglemodel.js"></script>
 		<script type="text/javascript" src="rotateasteroid.js"></script>
-		<script type="text/javascript" src="test.js"></script>
 	</head> 
 	<!--Body: content of document-->
 	<body>
@@ -44,13 +42,13 @@
 				<!-- 3D Models -->
 				<a-asset-item 
 					id="psyche_model" 
-					src="assets/asteroid.gltf" 
+					src="assets/PsycheAsteroid1.glb" 
 					crossorigin="anonymous"
 				></a-asset-item>
 				<!-- Images -->
 				<img 
 					id="psycheAsteroidImg" 
-					src="temp.png" 
+					src="assets/temp2.png" 
 					crossorigin="anonymous"
 				/>
 				<!-- Mixins: Preset Components that can be reused -->
@@ -96,21 +94,16 @@
 			></a-entity>
 			
 			<!-- Asteroid 3D -->
-			
 			<a-entity 
 				gltf-model="#psyche_model"
-				
 				id="threedpsyche"
 				position="0 -100 -4" 
 				rotation="0 0 0" 
 				scale="2.5 2.5 2.5"
 				data-raycastable 
 				rotateasteroid
-			
 			></a-entity>
-			
-			
-			<!--
+			<!-- Placeholder
 			<a-box 
 				id="threedpsyche"
 				position="0 0 -5" 
@@ -120,8 +113,8 @@
 				opacity="0.0"
 				data-raycastable 
 				rotateasteroid
-			></a-box>
-			-->
+			></a-box>-->
+			
 			<!-- Buttons -->
 			<a-text
 				id="psyche2dbuttonText"
@@ -225,8 +218,10 @@
 			></a-text>
 			<a-text 
 				id="textFrame"
-				value="Psyche is the name of an asteroid orbiting the Sun between Mars and Jupiter and the name of a NASA space mission to visit that asteroid, led by ASU. Psyche is the first mission to a world likely made largely of metal rather than rock or ice.
-				What gives asteroid Psyche great scientific interest is that it is likely rich in metal. It may consist largely of metal from the core of a planetesimal, one of the building blocks of the Sun’s planetary system. At Psyche scientists will explore, for the first time ever, a world made not of rock or ice, but rich in metal." 
+				value="Psyche is the name of an asteroid orbiting the Sun between Mars and Jupiter and the name of a NASA space mission to visit that asteroid. 
+				Psyche is the first mission to a world likely made largely of metal rather than rock or ice.
+				What gives asteroid Psyche great scientific interest is that it is likely rich in metal. It may consist largely of metal from the core of a planetesimal, one of the building blocks of the Sun’s planetary system. 
+				At Psyche scientists will explore, for the first time ever, a world made not of rock or ice, but rich in metal." 
 				geometry="primitive: plane" 
 				material="color:blue; visible: false" 
 				position="-3.0 9.75 -0.25"
@@ -255,17 +250,19 @@
 			
 			<!-- Background -->
 			<a-plane 
-				src= "/assets/2k_stars_milky_way.jpg"
+				src= "/assets/low_res_2k_stars_milky_way.jpg"
 				position="0 0 -10" 
 				rotation="0 0 0" 
-				width="50"
-				height="50"
+				width="70"
+				height="70"
 			></a-plane>
 			
 			<!--Custom Camera Rig-->
 			<a-entity id="rig">
-				<a-camera position="0 0 5" look-controls="enabled:false">
-				</a-camera>
+				<a-camera 
+					position="0 0 5" 
+					look-controls="enabled:false"
+				></a-camera>
 			</a-entity>
 		</a-scene>
 	</body>

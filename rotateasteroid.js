@@ -65,14 +65,29 @@ AFRAME.registerComponent('rotateasteroid', {
 			const currentRotate = el.getAttribute('rotation');
 		
 			let touches = event.changedTouches;
-
+			
 			for (touch of touches) 
 			{
-				el.setAttribute('rotation', {
-					'x': currentRotate.x - touch.pageY*0.01,
-					'y': currentRotate.y + touch.pageX*0.01,
+				var xTemp = touch.pageX;
+				var yTemp = touch.pageY;
+				
+				/*el.setAttribute('rotation', {
+					'x': currentRotate.x - touch.pageY*0.005,
+					'y': currentRotate.y + touch.pageX*0.005,
 					'z': currentRotate.z
-				})
+				})*/
+				
+				/*el.setAttribute('rotation', {
+					'x': currentRotate.x - yTemp*this.data.ySpeed/1000,
+					'y': currentRotate.y + xTemp*this.data.xSpeed/1000,
+					'z': currentRotate.z
+				})*/
+				
+				el.object3D.rotation.set(
+					THREE.Math.degToRad(currentRotate.x - yTemp*this.data.ySpeed/1000),
+					THREE.Math.degToRad(currentRotate.y + xTemp*this.data.xSpeed/1000),
+					THREE.Math.degToRad(currentRotate.z)
+				);
 			}
 		}
 		
@@ -81,11 +96,20 @@ AFRAME.registerComponent('rotateasteroid', {
 			const currentScale = el.getAttribute('scale');
 			const newScale = (ev.scale - 1)*0.01;
 			
-			el.setAttribute('scale', {
-				'x': currentScale.x + newScale,
-				'y': currentScale.y + newScale,
-				'z': currentScale.z + newScale
-			})
+			const maxScale = 2.75;
+			const minScale = 0.2;
+			
+			/*console.log(Math.max(minScale, Math.min(currentScale.x + newScale, maxScale)));
+			console.log(Math.max(minScale, Math.min(currentScale.y + newScale, maxScale)));
+			console.log(Math.max(minScale, Math.min(currentScale.z + newScale, maxScale)));*/
+			
+			if (ev.type == "pinch") {
+				el.object3D.scale.set(
+					Math.max(minScale, Math.min(currentScale.x + newScale, maxScale)),
+					Math.max(minScale, Math.min(currentScale.y + newScale, maxScale)),
+					Math.max(minScale, Math.min(currentScale.z + newScale, maxScale))
+				);
+			}
 		})
 		
 		/*
@@ -93,7 +117,6 @@ AFRAME.registerComponent('rotateasteroid', {
 		this.ifMouseDown = false;
 		this.xCoord = 0; 
 		this.yCoord = 0;
-		
 		document.addEventListener('mousedown',this.OnMouseDown.bind(this));
 		document.addEventListener('mouseup',this.OnMouseUp.bind(this));
 		document.addEventListener('touchmove',this.OnTouchMove.bind(this));
@@ -109,45 +132,9 @@ AFRAME.registerComponent('rotateasteroid', {
 		document.addEventListener('mousemove',this.OnMouseMove.bind(this));
 		document.addEventListener('touchmove',this.OnTouchMove.bind(this));
 		*/
-		
-		//Hammerhead.js for touch gestures
-		/*
-		var hammer = new Hammer(sceneEl);
-		var pinch = new Hammer.Pinch(); //pinch
-		hammer.add(pinch); // add pinch to Manager instance
-		
-		hammer.on('pan', (ev) => {
-			let rotation = el.getAttribute("rotation")
-			console.log("?");
-			switch(ev.direction){
-				case 2:
-					rotation.y = rotation.y - 1.4
-					break;
-				case 4:
-					rotation.y = rotation.y + 1.4
-					break;
-				case 8:
-					rotation.x = rotation.x - 1.4
-					break;
-				case 16:
-					rotation.x = rotation.x + 1.4
-					break;
-				default:
-					break;
-			}
-			el.setAttribute("rotation", rotation)
-		});
-		
-		hammer.on("pinch", (ev) => {
-			let scale = {x:ev.scale, y:ev.scale, z:ev.scale}
-			el.setAttribute("scale", scale);
-		});*/
-		
-		
-		
 	},
 	
-	
+	/*
 	//mouse down event
 	//OnDocumentMouseDown : function(event)
 	OnMouseDown : function(event)
@@ -173,10 +160,10 @@ AFRAME.registerComponent('rotateasteroid', {
 		this.ifMouseDown = false;
 	},
 	
-	
+	*/
 	//touch move event
 	//OnDocumentTouchMove : function(e)
-	OnTouchMove : function(e)
+	/*OnTouchMove : function(e)
 	{
 		//touch coordinates
 		var evt = (typeof e.originalEvent === 'undefined') ? e : e.originalEvent;
@@ -201,7 +188,7 @@ AFRAME.registerComponent('rotateasteroid', {
 			//rotate object by x and y speeds
 			el.object3D.rotateX(yTemp*this.data.ySpeed/100000);
 			el.object3D.rotateY(xTemp*this.data.xSpeed/100000);
-			*/
+			*//*
 			if(Math.abs(yTemp)<Math.abs(xTemp))
 			{
 				el.object3D.rotateY(xTemp*this.data.ySpeed/100000);
@@ -217,46 +204,7 @@ AFRAME.registerComponent('rotateasteroid', {
 			this.yCoord = touch.pageY;
 		}
 	},
-
-	//mouse move event
-	//OnDocumentMouseMove : function(event)
-	OnMouseMove : function(event)
-	{
-		//check mouse down
-		if(this.ifMouseDown)
-		{
-			console.log("moving");
-			el.setAttribute('color', 'green');
-			
-			//get mouse position
-			var xTemp = event.clientX - this.xCoord;
-			var yTemp = event.clientY - this.yCoord;
-		
-			console.log("MouseDown xTemp " + xTemp);
-			console.log("MouseDown yTemp " + yTemp);
-			/*
-			//rotate object by x and y speeds
-			//el.object3D.rotate(yTemp*this.data.ySpeed/1000,xTemp*this.data.xSpeed/1000, 0);
-			el.object3D.rotateY(xTemp*this.data.xSpeed/1000);
-			el.object3D.rotateX(yTemp*this.data.ySpeed/1000);
-			*/
-			
-			if(Math.abs(yTemp)<Math.abs(xTemp))
-			{
-				el.object3D.rotateY(xTemp*this.data.ySpeed/1000);
-			}
-			else
-			{
-				el.object3D.rotateX(yTemp*this.data.xSpeed/1000);
-			}
-			
-			//set coordinates
-			this.xCoord = event.clientX;
-			this.yCoord = event.clientY;
-		}
-	}
-	
-	
+	*/
 	//On Remove
 	//remove: function() {
 	//	this.el.removeEventListener('click', this.rotateAst);

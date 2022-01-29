@@ -61,6 +61,7 @@ AFRAME.registerComponent('togglemodel', {
 				};
 				psyche3d.setAttribute('animation', params2);
 				
+				psyche3d.object3D.scale.set(2.5, 2.5, 2.5);
 				psyche3d.object3D.rotation.set(0,0,0);
 				
 				//psyche3d.setAttribute('rotation', {x: 0, y: 0, z: 0});
@@ -106,6 +107,7 @@ AFRAME.registerComponent('togglemodel', {
 				psyche3d.setAttribute('animation', params2);
 				
 				
+				psyche3d.object3D.scale.set(2.5, 2.5, 2.5);
 				psyche3d.object3D.rotation.set(0,0,0);
 				//psyche3d.setAttribute('rotation', {x: 0, y: 0, z: 0});
 				toggle2 = 1;
