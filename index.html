@@ -48,7 +48,12 @@
 				<!-- Images -->
 				<img 
 					id="psycheAsteroidImg" 
-					src="assets/temp2.png" 
+					src="assets/temp2.png"
+					crossorigin="anonymous"
+				/>
+				<img 
+					id="bgImg" 
+					src="assets/2k_stars_milky_way.jpg" 
 					crossorigin="anonymous"
 				/>
 				<!-- Mixins: Preset Components that can be reused -->
@@ -250,7 +255,8 @@
 			
 			<!-- Background -->
 			<a-plane 
-				src= "/assets/low_res_2k_stars_milky_way.jpg"
+				id="backgroundImage"
+				material="src: #bgImg;" 
 				position="0 0 -10" 
 				rotation="0 0 0" 
 				width="70"
