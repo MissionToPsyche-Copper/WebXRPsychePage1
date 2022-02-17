@@ -49,7 +49,7 @@ Psyche WebXR Informative WebPage
     <div style="font-family:verdana";>
 
         <!--Aframe Scene (with Raycast for interaction)-->
-        <a-scene id="ascene" cursor="rayOrigin: mouse; fuseTimeout: -" raycaster="objects: [data-raycastable]">
+        <a-scene id="ascene" cursor="rayOrigin: mouse; fuseTimeout: 0" raycaster="objects: [data-raycastable]">
             <!--Custom Assets-->
             <!--This tag preloads objects, spawn them in with the a-entity tag later-->
             <a-assets>
@@ -230,8 +230,8 @@ Psyche WebXR Informative WebPage
                                icon-font="fonts/fa-regular-400.ttf"
                                data-raycastable
                                togglemodel
-                               position="0 0 -4"
-                               rotation="0 0 0"
+                               position="1 0 -4"
+                               rotation="20 -20 0"
                                active-color="#191970"
                                hover-color="#0047AB"
                                border-color="black"
@@ -244,7 +244,8 @@ Psyche WebXR Informative WebPage
                     value="Psyche is the name of an asteroid orbiting the Sun between Mars and Jupiter and the name of a NASA space mission to visit that asteroid."
                     geometry="primitive: plane"
                     material="color:blue; visible: false"
-                    position="-3.0 0.25 -0.25"
+                    position="-4.25 -2.25 -0.25"
+                    rotation="0 -20 0"
                     width="5.0"
                     color="white"
                     align="left"
@@ -292,7 +293,7 @@ Psyche WebXR Informative WebPage
             <a-entity id="rig">
                 <a-entity id="cameraCustomOrbit"
                           camera
-                          look-controls
+                          look-controls="magicWindowTrackingEnabled: false"
                           orbit-controls="
                           enabled: true;
                           enableRotate: true;

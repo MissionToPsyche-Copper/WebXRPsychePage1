@@ -85,6 +85,9 @@ AFRAME.registerComponent('togglehidden', {
 		console.log(ib1.getAttribute('height'));
 		*/
 
+		//text
+		var tf2 = sceneEl.querySelector('#textFrame2');
+
 
 		//Give component a function
 		this.toggleHide = function () {
@@ -115,9 +118,9 @@ AFRAME.registerComponent('togglehidden', {
 
 
 				//ib1.setAttribute('position', { 0, 0,- 4})
-				ib1.setAttribute('position', { x: 1.5, y: 1.5, z: 0.0 });;
+				ib1.setAttribute('position', { x: -1.25, y: -1.75, z: -1.5 });
 
-
+				tf2.setAttribute('opacity', 0.0);
 
 				//buttons
 				/*let params = {
@@ -153,9 +156,10 @@ AFRAME.registerComponent('togglehidden', {
 
 				//ib1.setAttribute('height', 0.0);
 
-				ib1.setAttribute('position', { x: 0, y: 0, z: -4 });;
+				ib1.setAttribute('position', { x: 1, y: 0, z: -4 });;
 
 
+				tf2.setAttribute('opacity', 0.0);
 
 
 
