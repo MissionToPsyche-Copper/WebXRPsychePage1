@@ -74,20 +74,17 @@ AFRAME.registerComponent('togglehidden', {
 
 
 		//Interactive Buttons
-
 		var ib1 = sceneEl.querySelector('#interactiveButton1');
+		var ib2 = sceneEl.querySelector('#interactiveButton2');
+		var ib3 = sceneEl.querySelector('#interactiveButton3');
 
-		/*console.log(ib1.getAttribute('height'));
+		//text boxes with info
+		var tfi1 = sceneEl.querySelector('#textFrameInfo1');
+		var tfi2 = sceneEl.querySelector('#textFrameInfo2');
+		var tfi3 = sceneEl.querySelector('#textFrameInfo3');
 
-		ib1.setAttribute('height', 0.0);
-		console.log(ib1.getAttribute('height'));
-		ib1.setAttribute('height', 0.75);
-		console.log(ib1.getAttribute('height'));
-		*/
-
-		//text
-		var tf2 = sceneEl.querySelector('#textFrame2');
-
+		//credits button
+		var cb = sceneEl.querySelector('#creditsButton');
 
 		//Give component a function
 		this.toggleHide = function () {
@@ -104,7 +101,8 @@ AFRAME.registerComponent('togglehidden', {
 					els[i].setAttribute('animation', params);
 				}
 				toggle = 1;
-				tb.setAttribute('value', "Show text");
+				tb.setAttribute('value', "Show Introduction");
+				cb.setAttribute('value', "Credits");
 
 				//enable camera
 				//cco.setAttribute('orbit-controls', orbitOn)
@@ -116,11 +114,13 @@ AFRAME.registerComponent('togglehidden', {
 				
 				*/
 
-
-				//ib1.setAttribute('position', { 0, 0,- 4})
 				ib1.setAttribute('position', { x: -1.25, y: -1.75, z: -1.5 });
-
-				tf2.setAttribute('opacity', 0.0);
+				ib2.setAttribute('position', { x: 3.75, y: 1.5, z: -5 });
+				ib3.setAttribute('position', { x: 0, y: -2.15, z: -6.15 });
+				
+				tfi1.setAttribute('opacity', 0.0);
+				tfi2.setAttribute('opacity', 0.0);
+				tfi3.setAttribute('opacity', 0.0);
 
 				//buttons
 				/*let params = {
@@ -152,20 +152,17 @@ AFRAME.registerComponent('togglehidden', {
 				}
 				toggle = 0;
 				tb.setAttribute('value', "Begin");
-
+				cb.setAttribute('value', "Return to Game");
 
 				//ib1.setAttribute('height', 0.0);
 
-				ib1.setAttribute('position', { x: 1, y: 0, z: -4 });;
+				ib1.setAttribute('position', { x: 1, y: 0, z: -4 });
+				ib2.setAttribute('position', { x: 1, y: 0, z: -4 });
+				ib3.setAttribute('position', { x: 1, y: 0, z: -4 });
 
-
-				tf2.setAttribute('opacity', 0.0);
-
-
-
-
-
-
+				tfi1.setAttribute('opacity', 0.0);
+				tfi2.setAttribute('opacity', 0.0);
+				tfi3.setAttribute('opacity', 0.0);
 
 
 

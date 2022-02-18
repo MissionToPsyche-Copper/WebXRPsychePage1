@@ -1,5 +1,6 @@
 ﻿//Global Vars
 var toggle2 = 0; //0: 2d; 1: 3d
+var numberButtonsPressed = [0, 0, 0]; //was each button pressed
 
 //Register Aframe Component (all lower case)
 AFRAME.registerComponent('togglemodel', {
@@ -24,9 +25,18 @@ AFRAME.registerComponent('togglemodel', {
 		//get 3d model
 		var psyche3d = sceneEl.querySelector('#threedpsyche')
 
-		//text
-		var tf2 = sceneEl.querySelector('#textFrame2');
+		//Interactive Buttons
+		var ib1 = sceneEl.querySelector('#interactiveButton1');
+		var ib2 = sceneEl.querySelector('#interactiveButton2');
+		var ib3 = sceneEl.querySelector('#interactiveButton3');
 
+		//text boxes with info
+		var tfi1 = sceneEl.querySelector('#textFrameInfo1');
+		var tfi2 = sceneEl.querySelector('#textFrameInfo2');
+		var tfi3 = sceneEl.querySelector('#textFrameInfo3');
+
+		//credits button
+		var cb = sceneEl.querySelector('#creditsButton');
 
 		//Give component a function
 		this.toggleModel = function () {
@@ -36,22 +46,72 @@ AFRAME.registerComponent('togglemodel', {
 
 				console.log(el.getAttribute('id'));
 
-				console.log(tf2.getAttribute('opacity'));
+				//console.log(el.getAttribute('active-color'));
+				//ib1.setAttribute('active-color', '#DE3163');
+				//console.log(el.getAttribute('active-color'));
+				//sadly unable to change attributes of aframe-gui
+				//objects at run-time, very annoying
 
-				if (tf2.getAttribute('opacity') == '0.9') {
+				console.log(tfi1.getAttribute('opacity'));
 
-					tf2.setAttribute('opacity', 0.0);
+				if (tfi1.getAttribute('opacity') == '0.9') {
+					tfi1.setAttribute('opacity', 0.0);
 				}
 				else {
+					tfi1.setAttribute('opacity', 0.9);
+					numberButtonsPressed[0] = 1; //button 1 pressed
+					console.log(numberButtonsPressed);
+				}
 
-					tf2.setAttribute('opacity', 0.9);
-                }
+				tfi2.setAttribute('opacity', 0.0);
+				tfi3.setAttribute('opacity', 0.0);
 
-				console.log(tf2.getAttribute('opacity'));
+				console.log(tfi1.getAttribute('opacity'));
+			}
+			else if (el.getAttribute('id') == 'interactiveButton2') {
+
+				console.log(el.getAttribute('id'));
+
+				console.log(tfi2.getAttribute('opacity'));
+
+				if (tfi2.getAttribute('opacity') == '0.9') {
+					tfi2.setAttribute('opacity', 0.0);
+				}
+				else {
+					tfi2.setAttribute('opacity', 0.9);
+					numberButtonsPressed[1] = 1; //button 2 pressed
+					console.log(numberButtonsPressed);
+				}
+				tfi1.setAttribute('opacity', 0.0);
+				tfi3.setAttribute('opacity', 0.0);
+
+				console.log(tfi2.getAttribute('opacity'));
+			}
+			else if (el.getAttribute('id') == 'interactiveButton3') {
+
+				console.log(el.getAttribute('id'));
+
+				console.log(tfi3.getAttribute('opacity'));
+
+				if (tfi3.getAttribute('opacity') == '0.9') {
+					tfi3.setAttribute('opacity', 0.0);
+				}
+				else {
+					tfi3.setAttribute('opacity', 0.9);
+					numberButtonsPressed[2] = 1; //button 3 pressed
+					console.log(numberButtonsPressed);
+				}
+
+				tfi1.setAttribute('opacity', 0.0);
+				tfi2.setAttribute('opacity', 0.0);
+
+				console.log(tfi3.getAttribute('opacity'));
 			}
 
-
-
+			if (numberButtonsPressed[0] == 1 || numberButtonsPressed[1] == 1 || numberButtonsPressed[2] == 1) {
+				cb.setAttribute('position', { x: 1.5, y: -3.5, z: 0.0 });
+				
+			}
 
 
 

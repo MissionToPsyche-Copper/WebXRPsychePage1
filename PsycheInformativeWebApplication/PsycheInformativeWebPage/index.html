@@ -221,10 +221,30 @@ Psyche WebXR Informative WebPage
                           background-color="#FFBF00"
                           bevel="true">
             </a-gui-button>
+            <a-gui-button id="creditsButton"
+                          data-raycastable
+                          togglehidden
+                          position="1 0 -4"
+                          width="2.5"
+                          height="0.7"
+                          base-depth="0.025"
+                          depth="0.1"
+                          gap="0.1"
+                          value="Credits"
+                          font-size="0.25"
+                          margin="0 0 0.05 0"
+                          font-color="black"
+                          active-color="#E3963E"
+                          hover-color="#FFBF00"
+                          border-color="black"
+                          focus-color="black"
+                          background-color="#FFBF00"
+                          bevel="true">
+            </a-gui-button>
 
             <!-- Info Buttons -->
             <a-gui-icon-button id="interactiveButton1"
-                               height="0.75"
+                               height="0.5"
                                icon="F0de"
                                icon-active="false"
                                icon-font="fonts/fa-regular-400.ttf"
@@ -240,7 +260,7 @@ Psyche WebXR Informative WebPage
                                margin="0 0 0.05 0">
             </a-gui-icon-button>
 
-            <a-text id="textFrame2"
+            <a-text id="textFrameInfo1"
                     value="Psyche is the name of an asteroid orbiting the Sun between Mars and Jupiter and the name of a NASA space mission to visit that asteroid."
                     geometry="primitive: plane"
                     material="color:blue; visible: false"
@@ -252,6 +272,69 @@ Psyche WebXR Informative WebPage
                     letter-spacing="2.0"
                     line-height="72.5"
                     opacity="0.0"></a-text>
+
+            <a-gui-icon-button id="interactiveButton2"
+                               height="0.5"
+                               icon="F0de"
+                               icon-active="false"
+                               icon-font="fonts/fa-regular-400.ttf"
+                               data-raycastable
+                               togglemodel
+                               position="1 0 -4"
+                               rotation="-25 105 0"
+                               active-color="#191970"
+                               hover-color="#0047AB"
+                               border-color="black"
+                               focus-color="black"
+                               background-color="#0047AB"
+                               margin="0 0 0.05 0">
+            </a-gui-icon-button>
+
+            <a-text id="textFrameInfo2"
+                    value="The asteroid Psyche consist largely of metal from the core of a planetesimal, one of the building blocks of the Sun’s planetary system. At Psyche scientists will explore, for the first time ever, a world made not of rock or ice, but rich in metal."
+                    geometry="primitive: plane"
+                    material="color:blue; visible: false"
+                    position="5.5 1 -3.5"
+                    rotation="-25 105 0"
+                    width="5.0"
+                    color="white"
+                    align="left"
+                    letter-spacing="2.0"
+                    line-height="72.5"
+                    opacity="0.0"></a-text>
+
+            <a-gui-icon-button id="interactiveButton3"
+                               height="0.5"
+                               icon="F0de"
+                               icon-active="false"
+                               icon-font="fonts/fa-regular-400.ttf"
+                               data-raycastable
+                               togglemodel
+                               position="1 0 -4"
+                               rotation="30 180 0"
+                               active-color="#191970"
+                               hover-color="#0047AB"
+                               border-color="black"
+                               focus-color="black"
+                               background-color="#0047AB"
+                               margin="0 0 0.05 0">
+            </a-gui-icon-button>
+
+            <a-text id="textFrameInfo3"
+                    value="Deep within the terrestrial planets, including Earth, scientists infer the presence of metallic cores, but these lie unreachably far below the planets’ rocky mantles and crusts. The asteroid Psyche offers a unique window into these building blocks of planet formation and the opportunity to investigate a previously unexplored type of world."
+                    geometry="primitive: plane"
+                    material="color:blue; visible: false"
+                    position="2 -4 -6.5"
+                    rotation="5 180 0"
+                    width="5.0"
+                    color="white"
+                    align="left"
+                    letter-spacing="2.0"
+                    line-height="72.5"
+                    opacity="0.0"></a-text>
+
+
+
 
             <!--
             <a-gui-flex-container id="guiContainer1"
