@@ -13,17 +13,11 @@ AFRAME.registerComponent('togglemodel', {
 		let el = this.el;
 		console.log(el);
 
-		//get model buttons
-		var twodbBG = sceneEl.querySelector('#psyche2dbuttonBG')
-		var threedbBG = sceneEl.querySelector('#psyche3dbuttonBG')
-		var twodbText = sceneEl.querySelector('#psyche2dbuttonText')
-		var threedbText = sceneEl.querySelector('#psyche3dbuttonText')
+		//get all elements in text frame
+		var els2 = sceneEl.querySelectorAll('#textFrame');
 
-		//get 2d model
-		var psyche2d = sceneEl.querySelector('#twodpsyche')
-
-		//get 3d model
-		var psyche3d = sceneEl.querySelector('#threedpsyche')
+		//get all elements in text frame 2
+		var els = sceneEl.querySelectorAll('#textFrame2');
 
 		//Interactive Buttons
 		var ib1 = sceneEl.querySelector('#interactiveButton1');
@@ -38,6 +32,12 @@ AFRAME.registerComponent('togglemodel', {
 		//credits button
 		var cb = sceneEl.querySelector('#creditsButton');
 
+		//NASA Psyche Link
+		var pwl = sceneEl.querySelector('#psycheWebsiteLink');
+
+		//A-Frame Link
+		var afwl = sceneEl.querySelector('#aframeWebsiteLink');
+		
 		//Give component a function
 		this.toggleModel = function () {
 			console.log(el);
@@ -110,98 +110,74 @@ AFRAME.registerComponent('togglemodel', {
 
 			if (numberButtonsPressed[0] == 1 || numberButtonsPressed[1] == 1 || numberButtonsPressed[2] == 1) {
 				cb.setAttribute('position', { x: 1.5, y: -3.5, z: 0.0 });
-				
 			}
 
+			if (el.getAttribute('id') == 'creditsButton') {
 
 
+				if (toggle2 == 0) {
 
-			/*
-			if ((el.id == "psyche2dbuttonBG" || el.id == "psyche2dbuttonText") && toggle2 == 1) {
-				console.log("changing model2");
-				let currPosition = psyche2d.getAttribute('position');
-				let params = {
-					property: 'position',
-					to: {
-						x: currPosition.x,
-						y: currPosition.y - 100,
-						z: currPosition.z
-					},
-					dur: 5,
-				};
-				psyche2d.setAttribute('animation', params);
+					for (var i = 0; i < els.length; i++) {
+						let currOpacity = els[i].getAttribute('opacity');
+						console.log(currOpacity);
+						let params = {
+							property: 'opacity',
+							to: 0.8,
+							dur: 750,
+						};
+						els[i].setAttribute('animation', params);
+					}
+					pwl.setAttribute('position', { x: 1, y: 1.25, z: 0.2 });
+					pwl.setAttribute('data-raycastable');
 
-				console.log("t3");
-				console.log(psyche3d.getAttribute('position'));
+					afwl.setAttribute('opacity', 1.0);
+					afwl.setAttribute('data-raycastable');
 
-				let currPosition22 = psyche3d.getAttribute('position');
-				let params2 = {
-					property: 'position',
-					to: {
-						x: currPosition.x,
-						y: currPosition.y + 100,
-						z: currPosition.z
-					},
-					dur: 5,
-				};
-				psyche3d.setAttribute('animation', params2);
+					toggle2 = 1;
+				}
+				else if (toggle2 == 1) {
 
-				psyche3d.object3D.scale.set(2.5, 2.5, 2.5);
-				psyche3d.object3D.rotation.set(0, 0, 0);
+					for (var i = 0; i < els.length; i++) {
+						let currOpacity = els[i].getAttribute('opacity');
+						console.log(currOpacity);
+						let params = {
+							property: 'opacity',
+							to: 0.0,
+							dur: 1750,
+						};
+						els[i].setAttribute('animation', params);
+					}
+					pwl.setAttribute('position', { x: 0, y: 0, z: -4 });
+					pwl.removeAttribute('data-raycastable');
 
-				//psyche3d.setAttribute('rotation', {x: 0, y: 0, z: 0});
-				//psyche3d.setAttribute('gltf-model', 'assets/Psyche_Asteroid.gltf');
+					afwl.setAttribute('opacity', 0.0);
+					afwl.removeAttribute('data-raycastable');
 
-				console.log("t4");
-				console.log(psyche3d.getAttribute('position'));
+					toggle2 = 0;
+				}
+				for (var i = 0; i < els2.length; i++) {
+					let currOpacity = els2[i].getAttribute('opacity');
+					//console.log(currOpacity);
+					let params = {
+						property: 'opacity',
+						to: 0,
+						dur: 750,
+					};
+					els2[i].setAttribute('animation', params);
+				}
+				//button text
+				cb.setAttribute('value', "Return to Game");
 
+				//hide blue points while menu active
+				ib1.setAttribute('position', { x: 1, y: 0, z: -4 });
+				ib2.setAttribute('position', { x: 1, y: 0, z: -4 });
+				ib3.setAttribute('position', { x: 1, y: 0, z: -4 });
 
-				toggle2 = 0;
-
-				twodbBG.setAttribute('color', '#000000');
-				threedbBG.setAttribute('color', '#222426');
-			}
-			else if ((el.id == "psyche3dbuttonBG" || el.id == "psyche3dbuttonText") && toggle2 == 0) {
-				console.log("changing model1");
-				let currPosition = psyche2d.getAttribute('position');
-				let params = {
-					property: 'position',
-					to: {
-						x: currPosition.x,
-						y: currPosition.y + 100,
-						z: currPosition.z
-					},
-					dur: 5,
-				};
-				psyche2d.setAttribute('animation', params);
-
-				console.log("t1");
-				console.log(psyche3d.getAttribute('position'));
-
-				let currPosition2 = psyche3d.getAttribute('position');
-				let params2 = {
-					property: 'position',
-					to: {
-						x: currPosition.x,
-						y: currPosition.y + 0,
-						z: currPosition.z
-					},
-					dur: 5,
-				};
-				psyche3d.setAttribute('animation', params2);
-
-
-				psyche3d.object3D.scale.set(2.5, 2.5, 2.5);
-				psyche3d.object3D.rotation.set(0, 0, 0);
-				//psyche3d.setAttribute('rotation', {x: 0, y: 0, z: 0});
-				toggle2 = 1;
-
-				console.log("t2");
-				console.log(psyche3d.getAttribute('position'));
-
-				twodbBG.setAttribute('color', '#222426');
-				threedbBG.setAttribute('color', '#000000');
-			}*/
+				//hide text boxes
+				tfi1.setAttribute('opacity', 0.0);
+				tfi2.setAttribute('opacity', 0.0);
+				tfi3.setAttribute('opacity', 0.0);
+            }
 		}
 
 		//Add EventListener

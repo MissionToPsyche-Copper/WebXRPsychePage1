@@ -19,12 +19,6 @@ Psyche WebXR Informative WebPage
     <!--Aframe -->
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
 
-    <!--Hammer.js for Touch Gestures -->
-    <script src="https://hammerjs.github.io/dist/hammer.js"></script>
-    <!--<script src="https://unpkg.com/aframe-click-drag-component"></script>
-    <script>
-        registerAframeClickDragComponent(window.AFRAME);
-    </script>-->
     <!-- Orbit Camera -->
     <script src="https://unpkg.com/aframe-orbit-controls@1.2.0/dist/aframe-orbit-controls.min.js"></script>
     <!--<script src="https://unpkg.com/aframe-supercraft-loader@1.1.3/dist/aframe-supercraft-loader.js"></script>
@@ -35,13 +29,7 @@ Psyche WebXR Informative WebPage
     <!--Javascript-->
     <script type="text/javascript" src="togglehidden.js"></script>
     <script type="text/javascript" src="togglemodel.js"></script>
-    <script type="text/javascript" src="rotateasteroid.js"></script>
-
-
-
-
-
-
+    <script type="text/javascript" src="navigate-on-click.js"></script>
 </head>
 <!--Body: content of document-->
 <body>
@@ -57,13 +45,18 @@ Psyche WebXR Informative WebPage
                 <a-asset-item id="psyche_model"
                               src="assets/PsycheAsteroid1.glb"
                               crossorigin="anonymous"></a-asset-item>
-                <!-- Images -->
-                <img id="psycheAsteroidImg"
-                     src="assets/temp2.png"
-                     crossorigin="anonymous" />
+
+                <!-- Images
+        <img id="psycheAsteroidImg"
+         src="assets/temp2.png"-->
+                crossorigin="anonymous" />
                 <img id="bgImg"
                      src="assets/2k_stars_milky_way.jpg"
                      crossorigin="anonymous" />
+                <img id="psycheWebsite"
+                     src="assets/psyche.svg"
+                     corssorigin="anonymous" />
+
                 <!-- Mixins: Preset Components that can be reused -->
                 <a-mixin id="imageFrame"
                          geometry="primitive: plane;"
@@ -73,11 +66,7 @@ Psyche WebXR Informative WebPage
             <!-- Ambient Light -->
             <a-entity light="type: ambient; color: #ffffff ; intensity: 1.0"></a-entity>
 
-            <!-- Directional Light
-    <a-entity
-        light="type: directional; color: #ffffff; intensity: 1.0"
-        position="1 1 1"
-    ></a-entity> -->
+            <!-- Directional Light -->
             <a-light type="directional"
                      position="5 5 5"
                      rotation="0 0 0"
@@ -88,92 +77,48 @@ Psyche WebXR Informative WebPage
                           position="0 0 -4"></a-entity>
             </a-light>
 
-            <!-- Asteroid 2D
-    <a-entity id="twodpsyche"
-              material="src: #psycheAsteroidImg;"
-              mixin="imageFrame"
-              position="0 0 -4"
-              scale="8.0 8.0 8.0"
-              opacity="0.0"></a-entity>-->
             <!-- Asteroid 3D -->
             <a-entity gltf-model="#psyche_model"
                       id="threedpsyche"
                       position="0 0 -4"
                       rotation="-75 175 0"
                       scale="2.5 2.5 2.5"
-                      data-raycastable
-                      rotateasteroid></a-entity>
+                      data-raycastable></a-entity>
 
-            <!-- Buttons -->
-            <a-text id="psyche2dbuttonText"
-                    value="2D"
-                    position="-1.4 -5.5 -4"
-                    rotation="0 0 0"
-                    scale="3.0 3.0 3.0"
-                    color="#ffffff"
-                    align="left"
-                    opacity="0.0"
-                    togglemodel></a-text>
-            <a-plane id="psyche2dbuttonBG"
-                     position="-1.0 -5.5 -4"
-                     rotation="0 0 0"
-                     width="2.0"
-                     height="1.0"
-                     color="#000000"
-                     opacity="0.0"
-                     togglemodel></a-plane>
-            <a-text id="psyche3dbuttonText"
-                    value="3D"
-                    position="0.4 -5.5 -4"
-                    rotation="0 0 0"
-                    scale="3.0 3.0 3.0"
-                    color="#ffffff"
-                    align="left"
-                    opacity="0.0"
-                    togglemodel></a-text>
-            <a-plane id="psyche3dbuttonBG"
-                     position="1.0 -5.5 -4"
-                     rotation="0 0 0"
-                     width="2.0"
-                     height="1.0"
-                     color="#222426"
-                     opacity="0.0"
-                     togglemodel></a-plane>
-
-            <!-- Text border "Psyche is the name of an asteroid orbiting the Sun between Mars and Jupiter and the name of a NASA space mission to visit that asteroid.
+            <!-- Text: "Psyche is the name of an asteroid orbiting the Sun between Mars and Jupiter and the name of a NASA space mission to visit that asteroid.
     Psyche is the first mission to a world likely made largely of metal rather than rock or ice.
     What gives asteroid Psyche great scientific interest is that it is likely rich in metal. It may consist largely of metal from the core of a planetesimal, one of the building blocks of the Sun’s planetary system.
     At Psyche scientists will explore, for the first time ever, a world made not of rock or ice, but rich in metal."-->
             <a-plane id="textFrame"
-                     position="0 13.8 -0.25"
+                     position="0 13.8 0"
                      rotation="0 0 0"
                      width="7.55"
                      height="0.15"
                      color="#000000"
                      opacity="0.9"></a-plane>
             <a-plane id="textFrame"
-                     position="0 6.2 -0.25"
+                     position="0 6.2 0"
                      rotation="0 0 0"
                      width="7.55"
                      height="0.15"
                      color="#000000"
                      opacity="0.9"></a-plane>
             <a-plane id="textFrame"
-                     position="-3.8 10 -0.25"
+                     position="-3.8 10 0"
                      rotation="0 0 90"
                      width="7.85"
                      height="0.15"
                      color="#000000"
                      opacity="0.9"></a-plane>
             <a-plane id="textFrame"
-                     position="3.8 10 -0.25"
+                     position="3.8 10 0"
                      rotation="0 0 90"
                      width="7.85"
                      height="0.15"
                      color="#000000"
                      opacity="0.9"></a-plane>
             <a-plane id="textFrame"
-                     position="0 10 -0.25"
+                     position="0 10 0"
                      rotation="0 0 0"
                      width="7.5"
                      height="7.5"
@@ -192,7 +137,7 @@ Psyche WebXR Informative WebPage
                     value="Explore the asteroid Psyche.\n Tap circles on the asteroid's surface to learn more about Psyche."
                     geometry="primitive: plane"
                     material="color:blue; visible: false"
-                    position="-3.0 9.75 -0.25"
+                    position="-3.0 9.75 0"
                     width="5.0"
                     color="white"
                     align="left"
@@ -223,7 +168,7 @@ Psyche WebXR Informative WebPage
             </a-gui-button>
             <a-gui-button id="creditsButton"
                           data-raycastable
-                          togglehidden
+                          togglemodel
                           position="1 0 -4"
                           width="2.5"
                           height="0.7"
@@ -333,42 +278,98 @@ Psyche WebXR Informative WebPage
                     line-height="72.5"
                     opacity="0.0"></a-text>
 
+            <!-- Credits-->
+            <a-plane id="textFrame2"
+                     position="0 3.8 0.1"
+                     rotation="0 0 0"
+                     width="7.55"
+                     height="0.15"
+                     color="#000000"
+                     opacity="0.0"></a-plane>
+            <a-plane id="textFrame2"
+                     position="0 -3.8 0.1"
+                     rotation="0 0 0"
+                     width="7.55"
+                     height="0.15"
+                     color="#000000"
+                     opacity="0.0"></a-plane>
+            <a-plane id="textFrame2"
+                     position="-3.8 0 0.1"
+                     rotation="0 0 90"
+                     width="7.85"
+                     height="0.15"
+                     color="#000000"
+                     opacity="0.0"></a-plane>
+            <a-plane id="textFrame2"
+                     position="3.8 0 0.1"
+                     rotation="0 0 90"
+                     width="7.85"
+                     height="0.15"
+                     color="#000000"
+                     opacity="0.0"></a-plane>
+            <a-plane id="textFrame2"
+                     position="0 0 0.1"
+                     rotation="0 0 0"
+                     width="7.5"
+                     height="7.5"
+                     color="#000000"
+                     opacity="0.="></a-plane>
+            <a-text id="textFrame2"
+                    value="Credits"
+                    geometry="primitive: plane"
+                    material="color:blue; visible: false"
+                    position="-3.0 2.75 0.1"
+                    width="12.0"
+                    color="white"
+                    align="left"
+                    opacity="0.0"></a-text>
+            <a-text id="textFrame2"
+                    value="NASA website:"
+                    geometry="primitive: plane"
+                    material="color:blue; visible: false"
+                    position="-3.0 1.25 0.1"
+                    width="5.0"
+                    color="white"
+                    align="left"
+                    letter-spacing="2.0"
+                    line-height="72.5"
+                    opacity="0.0"></a-text>
+            <a-text id="textFrame2"
+                    value="Made with A-Frame:"
+                    geometry="primitive: plane"
+                    material="color:blue; visible: false"
+                    position="-3.0 -0.25 0.1"
+                    width="5.0"
+                    color="white"
+                    align="left"
+                    letter-spacing="2.0"
+                    line-height="72.5"
+                    opacity="0.0"></a-text>
 
+            <!-- Link to Psyche Website
+    <a-link href="https://psyche.asu.edu/" title="Psyche Website" ; image="#psycheWebsite"></a-link>
+        -->
+            <a-entity id="psycheWebsiteLink"
+                      material="src: #psycheWebsite;"
+                      navigate-on-click="url: https://psyche.asu.edu/"
+                      mixin="imageFrame"
+                      position="0 0 -4"
+                      scale="4.0 2.0 2.0"
+                      opacity="0.0"></a-entity>
+            <a-text id="aframeWebsiteLink"
+                    value="A-Frame"
+                    geometry="primitive: plane"
+                    material="color:blue; visible: false"
+                    navigate-on-click="url: https://aframe.io/"
+                    position="-0.25 -0.25 0.2"
+                    scale="2.0 2.0 2.0"
+                    width="5.0"
+                    color="white"
+                    align="left"
+                    letter-spacing="2.0"
+                    line-height="72.5"
+                    opacity="0.0"></a-text>
 
-
-            <!--
-            <a-gui-flex-container id="guiContainer1"
-                                  flex-direction="row"
-                                  justify-content="flexStart"
-                                  align-items="flexStart"
-                                  component-padding="0.1"
-                                  opacity="0.9"
-                                  width="5.5"
-                                  height="4.5"
-                                  panel-color="#000000"
-                                  panel-rounded="0.2"
-                                  position="-1.5 -3.5 0.0"
-                                  rotation="0 0 0">
-
-                <a-gui-label width="2.5" height="0.75"
-                             value="Psyche is the name of an asteroid orbiting the Sun between Mars and Jupiter and the name of a NASA space mission to visit that asteroid."
-
-                             font-size="0.35"
-                             line-height="0.8"
-                             letter-spacing="0"
-                             margin="0 0 0.05 0">
-                </a-gui-label>
-
-                <!--<a-text value="Psyche is the name of an asteroid orbiting the Sun between Mars and Jupiter and the name of a NASA space mission to visit that asteroid."
-                        opacity="0.9"></a-text>
-                <a-text value="
-
-    What gives asteroid Psyche great scientific interest is that it is likely rich in metal. It may consist largely of metal from the core of a planetesimal, one of the building blocks of the Sun’s planetary system.
-    At Psyche scientists will explore, for the first time ever, a world made not of rock or ice, but rich in metal."
-                        opacity="0.9"></a-text>
-
-            </a-gui-flex-container>
-                -->
             <!-- Skybox -->
             <a-sky src="#bgImg"></a-sky>
 
