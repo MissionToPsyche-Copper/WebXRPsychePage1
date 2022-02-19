@@ -87,10 +87,10 @@ AFRAME.registerComponent('togglehidden', {
 				thComponent.disableBlueInfoPoints(ib1, ib2, ib3);
 			}
 
-			console.log("toggle");
+			/*console.log("toggle");
 			console.log(toggle);
 			console.log("toggle2");
-			console.log(toggle2);
+			console.log(toggle2);*/
 		}
 
 		//Add EventListener
@@ -220,11 +220,12 @@ AFRAME.registerComponent('togglehidden', {
 
 	toggleTextBox: function (tfi) {
 		//toggle text box's visibility
-		if (tfi.getAttribute('opacity') == '1.0') {
-			tfi.setAttribute('opacity', 0.0);
+		console.log(tfi.getAttribute('opacity'));
+		if (tfi.getAttribute('opacity') == '1') {
+			tfi.setAttribute('opacity', 0);
 		}
 		else {
-			tfi.setAttribute('opacity', 1.0);
+			tfi.setAttribute('opacity', 1);
 		}
 	},
 

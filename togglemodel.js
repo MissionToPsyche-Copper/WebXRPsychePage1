@@ -56,7 +56,7 @@ AFRAME.registerComponent('togglemodel', {
 
 				//button 1 pressed
 				numberButtonsPressed[0] = 1;
-				console.log(numberButtonsPressed);
+				//console.log(numberButtonsPressed);
 
 				//hide other text boxes
 				tfi2.setAttribute('opacity', 0.0);
@@ -68,7 +68,7 @@ AFRAME.registerComponent('togglemodel', {
 
 				//button 2 pressed
 				numberButtonsPressed[1] = 1;
-				console.log(numberButtonsPressed);
+				//console.log(numberButtonsPressed);
 
 				//hide other text boxes
 				tfi1.setAttribute('opacity', 0.0);
@@ -80,7 +80,7 @@ AFRAME.registerComponent('togglemodel', {
 
 				//button 2 pressed
 				numberButtonsPressed[2] = 1;
-				console.log(numberButtonsPressed);
+				//console.log(numberButtonsPressed);
 
 				//hide other text boxes
 				tfi1.setAttribute('opacity', 0.0);
@@ -115,7 +115,7 @@ AFRAME.registerComponent('togglemodel', {
 					cb.setAttribute('value', "Return to Game");
 
 					//weird opacity overlay issue, so move text box while menu active
-					tfi1.setAttribute('position', { x: -4.25, y: -5.25, z: -0.25 });
+					tfi1.setAttribute('position', { x: -4.575, y: -5.25, z: -0.25 });
 				}
 				else if (toggle2 == 1) {
 					//hide end screen
@@ -132,19 +132,16 @@ AFRAME.registerComponent('togglemodel', {
 					cb.setAttribute('value', "Credits");
 
 					//weird opacity overlay issue, so move text box while menu active
-					tfi1.setAttribute('position', { x: -4.25, y: -2.25, z: -0.25 });
+					tfi1.setAttribute('position', { x: -4.575, y: -2.25, z: -0.25 });
 				}
 
-				console.log("toggle");
+				/*console.log("toggle");
 				console.log(toggle);
 				console.log("toggle2");
-				console.log(toggle2);
+				console.log(toggle2);*/
 
 				//button text
 				tb.setAttribute('value', "Show Introduction");
-
-
-
             }
 		}
 
