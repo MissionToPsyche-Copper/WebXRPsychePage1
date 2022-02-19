@@ -11,13 +11,12 @@ AFRAME.registerComponent('togglemodel', {
 
 		//Get this element
 		let el = this.el;
-		console.log(el);
 
 		//get all elements in text frame
-		var els2 = sceneEl.querySelectorAll('#textFrame');
+		var els = sceneEl.querySelectorAll('#textFrame');
 
 		//get all elements in text frame 2
-		var els = sceneEl.querySelectorAll('#textFrame2');
+		var els2 = sceneEl.querySelectorAll('#textFrame2');
 
 		//Interactive Buttons
 		var ib1 = sceneEl.querySelector('#interactiveButton1');
@@ -29,6 +28,9 @@ AFRAME.registerComponent('togglemodel', {
 		var tfi2 = sceneEl.querySelector('#textFrameInfo2');
 		var tfi3 = sceneEl.querySelector('#textFrameInfo3');
 
+		//get toggle button
+		var tb = sceneEl.querySelector('#toggleButton');
+
 		//credits button
 		var cb = sceneEl.querySelector('#creditsButton');
 
@@ -37,146 +39,112 @@ AFRAME.registerComponent('togglemodel', {
 
 		//A-Frame Link
 		var afwl = sceneEl.querySelector('#aframeWebsiteLink');
-		
+
+		//function calling
+		var thComponent = document.querySelector('[togglehidden]').components.togglehidden;
+
+		//test function
+		thComponent.qux();
+
 		//Give component a function
 		this.toggleModel = function () {
-			console.log(el);
+			//console.log(el);
 
 			if (el.getAttribute('id') == 'interactiveButton1') {
+				//on click, toggle textbox
+				thComponent.toggleTextBox(tfi1);
 
-				console.log(el.getAttribute('id'));
+				//button 1 pressed
+				numberButtonsPressed[0] = 1;
+				console.log(numberButtonsPressed);
 
-				//console.log(el.getAttribute('active-color'));
-				//ib1.setAttribute('active-color', '#DE3163');
-				//console.log(el.getAttribute('active-color'));
-				//sadly unable to change attributes of aframe-gui
-				//objects at run-time, very annoying
-
-				console.log(tfi1.getAttribute('opacity'));
-
-				if (tfi1.getAttribute('opacity') == '0.9') {
-					tfi1.setAttribute('opacity', 0.0);
-				}
-				else {
-					tfi1.setAttribute('opacity', 0.9);
-					numberButtonsPressed[0] = 1; //button 1 pressed
-					console.log(numberButtonsPressed);
-				}
-
+				//hide other text boxes
 				tfi2.setAttribute('opacity', 0.0);
 				tfi3.setAttribute('opacity', 0.0);
-
-				console.log(tfi1.getAttribute('opacity'));
 			}
 			else if (el.getAttribute('id') == 'interactiveButton2') {
+				//on click, toggle textbox
+				thComponent.toggleTextBox(tfi2);
 
-				console.log(el.getAttribute('id'));
+				//button 2 pressed
+				numberButtonsPressed[1] = 1;
+				console.log(numberButtonsPressed);
 
-				console.log(tfi2.getAttribute('opacity'));
-
-				if (tfi2.getAttribute('opacity') == '0.9') {
-					tfi2.setAttribute('opacity', 0.0);
-				}
-				else {
-					tfi2.setAttribute('opacity', 0.9);
-					numberButtonsPressed[1] = 1; //button 2 pressed
-					console.log(numberButtonsPressed);
-				}
+				//hide other text boxes
 				tfi1.setAttribute('opacity', 0.0);
 				tfi3.setAttribute('opacity', 0.0);
-
-				console.log(tfi2.getAttribute('opacity'));
 			}
 			else if (el.getAttribute('id') == 'interactiveButton3') {
+				//on click, toggle textbox
+				thComponent.toggleTextBox(tfi3);
 
-				console.log(el.getAttribute('id'));
+				//button 2 pressed
+				numberButtonsPressed[2] = 1;
+				console.log(numberButtonsPressed);
 
-				console.log(tfi3.getAttribute('opacity'));
-
-				if (tfi3.getAttribute('opacity') == '0.9') {
-					tfi3.setAttribute('opacity', 0.0);
-				}
-				else {
-					tfi3.setAttribute('opacity', 0.9);
-					numberButtonsPressed[2] = 1; //button 3 pressed
-					console.log(numberButtonsPressed);
-				}
-
+				//hide other text boxes
 				tfi1.setAttribute('opacity', 0.0);
 				tfi2.setAttribute('opacity', 0.0);
-
-				console.log(tfi3.getAttribute('opacity'));
 			}
 
+			//show end screen button after at least one blue point clicked
 			if (numberButtonsPressed[0] == 1 || numberButtonsPressed[1] == 1 || numberButtonsPressed[2] == 1) {
-				cb.setAttribute('position', { x: 1.5, y: -3.5, z: 0.0 });
+				thComponent.showEndScreenButton(cb);
 			}
 
 			if (el.getAttribute('id') == 'creditsButton') {
-
-
-				if (toggle2 == 0) {
-
-					for (var i = 0; i < els.length; i++) {
-						let currOpacity = els[i].getAttribute('opacity');
-						console.log(currOpacity);
-						let params = {
-							property: 'opacity',
-							to: 0.8,
-							dur: 750,
-						};
-						els[i].setAttribute('animation', params);
-					}
-					pwl.setAttribute('position', { x: 1, y: 1.25, z: 0.2 });
-					pwl.setAttribute('data-raycastable');
-
-					afwl.setAttribute('opacity', 1.0);
-					afwl.setAttribute('data-raycastable');
-
-					toggle2 = 1;
-				}
-				else if (toggle2 == 1) {
-
-					for (var i = 0; i < els.length; i++) {
-						let currOpacity = els[i].getAttribute('opacity');
-						console.log(currOpacity);
-						let params = {
-							property: 'opacity',
-							to: 0.0,
-							dur: 1750,
-						};
-						els[i].setAttribute('animation', params);
-					}
-					pwl.setAttribute('position', { x: 0, y: 0, z: -4 });
-					pwl.removeAttribute('data-raycastable');
-
-					afwl.setAttribute('opacity', 0.0);
-					afwl.removeAttribute('data-raycastable');
-
-					toggle2 = 0;
-				}
-				for (var i = 0; i < els2.length; i++) {
-					let currOpacity = els2[i].getAttribute('opacity');
-					//console.log(currOpacity);
-					let params = {
-						property: 'opacity',
-						to: 0,
-						dur: 750,
-					};
-					els2[i].setAttribute('animation', params);
-				}
-				//button text
-				cb.setAttribute('value', "Return to Game");
-
-				//hide blue points while menu active
-				ib1.setAttribute('position', { x: 1, y: 0, z: -4 });
-				ib2.setAttribute('position', { x: 1, y: 0, z: -4 });
-				ib3.setAttribute('position', { x: 1, y: 0, z: -4 });
+				//hide intro screen
+				thComponent.hideMenu(els);
+				toggle = 0;
 
 				//hide text boxes
-				tfi1.setAttribute('opacity', 0.0);
-				tfi2.setAttribute('opacity', 0.0);
-				tfi3.setAttribute('opacity', 0.0);
+				thComponent.hideTextBoxes(tfi1, tfi2, tfi3);
+
+				if (toggle2 == 0) {
+					//show end screen
+					thComponent.showMenu(els2);
+					thComponent.showLinks(pwl, afwl);
+
+					//set toggle2 to 1
+					toggle2 = 1;
+
+					//hide blue points while menu active
+					thComponent.disableBlueInfoPoints(ib1, ib2, ib3);
+
+					//button text
+					cb.setAttribute('value', "Return to Game");
+
+					//weird opacity overlay issue, so move text box while menu active
+					tfi1.setAttribute('position', { x: -4.25, y: -5.25, z: -0.25 });
+				}
+				else if (toggle2 == 1) {
+					//hide end screen
+					thComponent.hideMenu(els2);
+					thComponent.hideLinks(pwl, afwl);
+
+					//set toggle2 to 0
+					toggle2 = 0;
+
+					//show blue points
+					thComponent.activateBlueInfoPoints(ib1, ib2, ib3);
+
+					//button text
+					cb.setAttribute('value', "Credits");
+
+					//weird opacity overlay issue, so move text box while menu active
+					tfi1.setAttribute('position', { x: -4.25, y: -2.25, z: -0.25 });
+				}
+
+				console.log("toggle");
+				console.log(toggle);
+				console.log("toggle2");
+				console.log(toggle2);
+
+				//button text
+				tb.setAttribute('value', "Show Introduction");
+
+
+
             }
 		}
 

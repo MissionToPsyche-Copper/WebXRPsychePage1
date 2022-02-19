@@ -20,5 +20,8 @@ Running the app:
     The experience starts at the index.html file. This is the page the user should first be redirected to.
 
 Screenshots:
-
+![Start Screen](/screenshots/startscreen.png)
+![Rotation](/screenshots/rotation.png)
+![Blue Points](/screenshots/bluepoint.png)
+![End Screen](/screenshots/endscreen.png)
 
