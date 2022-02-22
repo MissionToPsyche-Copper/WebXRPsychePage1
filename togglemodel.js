@@ -139,6 +139,9 @@ AFRAME.registerComponent('togglemodel', {
 					cameraOrbit.play();
 					cameraOrbit.setAttribute('camera', 'active', true);
 
+					//set three.js camera position
+					cameraOrbit.getObject3D('camera').position.set(0, 0, 8);
+
 					//hide end screen
 					thComponent.hideMenu(els2);
 					thComponent.hideLinks(pwl, afwl);

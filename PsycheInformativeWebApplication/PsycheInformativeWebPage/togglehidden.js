@@ -6,7 +6,10 @@ AFRAME.registerComponent('togglehidden', {
 	//Initialize function
 	init: function () {
 		//get scene element
-		var sceneEl = document.querySelector('a-scene')
+		var sceneEl = document.querySelector('a-scene');
+
+		//get three.js scene
+		var obj = document.querySelector('a-scene').object3D;
 
 		//Get this element
 		var el = this.el;
@@ -43,9 +46,6 @@ AFRAME.registerComponent('togglehidden', {
 		var cameraOrbit = document.querySelector('#cameraCustomOrbit');
 		var cameraStatic = document.querySelector('#cameraStatic');
 
-		//pause
-		//cameraOrbit.pause();
-
 		//function calling
 		var thComponent = document.querySelector('[togglehidden]').components.togglehidden;
 
@@ -68,7 +68,9 @@ AFRAME.registerComponent('togglehidden', {
 			if (toggle == 1) {
 				//change camera
 				cameraOrbit.setAttribute('camera', 'active', true);
-				//console.log(cameraOrbit.getAttribute('orbit-controls'));
+
+				//set three.js camera position
+				cameraOrbit.getObject3D('camera').position.set(0, 0, 8);
 
 				//hide intro menu
 				thComponent.hideMenu(els);

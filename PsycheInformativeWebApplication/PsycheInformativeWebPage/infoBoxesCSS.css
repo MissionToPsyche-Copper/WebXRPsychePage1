@@ -43,8 +43,9 @@
         margin: auto;
         color: #A53F5B;
         text-transform: uppercase;
-        /* font-size: xx-large;*/ 
+        /* font-size: xx-large;*/
         font-size: small;
+        line-height: 2em;
     }
 
     .modal_content > p {
@@ -54,6 +55,7 @@
         padding-bottom: 1rem;
         /* font-size: x-large;*/
         font-size: small;
+        line-height: 2em;
         font-family: "Helvetica", Arial, sans-serif;
     }
 
