@@ -35,7 +35,6 @@
 
 .modal_content {
     font-family: "Roboto",sans-serif;
-    font: bold;
     padding: 1.5rem 2rem;
 }
 
@@ -43,7 +42,8 @@
         margin: auto;
         color: #A53F5B;
         text-transform: uppercase;
-        font-size: xx-large;
+        /* font-size: xx-large;*/ 
+        font-size: small;
     }
 
     .modal_content > p {
@@ -51,7 +51,8 @@
         color: white;
         padding-top: 1rem;
         padding-bottom: 1rem;
-        font-size: x-large;
+        /* font-size: x-large;*/
+        font-size: small;
         font-family: "Helvetica", Arial, sans-serif;
     }
 
@@ -63,7 +64,8 @@
     display: inline-block;
     padding: 0 40px 15px 0;
     font-family: "RobotoMono",sans-serif;
-    font-size: x-large;
+    /* font-size: x-large;*/ 
+    font-size: small;
     letter-spacing: 1px;
     color: #F9A000;
     text-decoration: none;

@@ -357,7 +357,7 @@
     <None Include="packages.config" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="index.html" />
-    <Content Include="rotateasteroid.js" />
+    <Content Include="infoBoxesCSS.css" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -385,6 +385,7 @@
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\sammy-0.7.5.js" />
     <Content Include="Scripts\sammy-0.7.5.min.js" />
+    <Content Include="textinfohandler.js" />
     <Content Include="togglehidden.js" />
     <Content Include="togglemodel.js" />
     <Content Include="Views\_ViewStart.vbhtml" />
