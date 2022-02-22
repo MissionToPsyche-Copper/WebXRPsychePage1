@@ -55,36 +55,42 @@ AFRAME.registerComponent('togglemodel', {
 			//console.log(el);
 
 			if (el.getAttribute('id') == 'interactiveButton1') {
-				//on click, toggle textbox
-				thComponent.toggleTextBox(tfi1);
 
 				//button 1 pressed
 				numberButtonsPressed[0] = 1;
 				//console.log(numberButtonsPressed);
+
+				//on click, toggle textbox
+				//thComponent.toggleTextBox(tfi1);
+				toggleText(1);
 
 				//hide other text boxes
 				tfi2.setAttribute('opacity', 0.0);
 				tfi3.setAttribute('opacity', 0.0);
 			}
 			else if (el.getAttribute('id') == 'interactiveButton2') {
-				//on click, toggle textbox
-				thComponent.toggleTextBox(tfi2);
 
 				//button 2 pressed
 				numberButtonsPressed[1] = 1;
 				//console.log(numberButtonsPressed);
+
+				//on click, toggle textbox
+				//thComponent.toggleTextBox(tfi2);
+				toggleText(2);
 
 				//hide other text boxes
 				tfi1.setAttribute('opacity', 0.0);
 				tfi3.setAttribute('opacity', 0.0);
 			}
 			else if (el.getAttribute('id') == 'interactiveButton3') {
-				//on click, toggle textbox
-				thComponent.toggleTextBox(tfi3);
 
 				//button 2 pressed
 				numberButtonsPressed[2] = 1;
 				//console.log(numberButtonsPressed);
+
+				//on click, toggle textbox
+				//thComponent.toggleTextBox(tfi3);
+				toggleText(3);
 
 				//hide other text boxes
 				tfi1.setAttribute('opacity', 0.0);
@@ -106,6 +112,7 @@ AFRAME.registerComponent('togglemodel', {
 
 				if (toggle2 == 0) {
 					//change camera
+					cameraOrbit.pause();
 					cameraStatic.setAttribute('camera', 'active', true);
 
 					//show end screen
@@ -126,6 +133,7 @@ AFRAME.registerComponent('togglemodel', {
 				}
 				else if (toggle2 == 1) {
 					//change camera
+					cameraOrbit.play();
 					cameraOrbit.setAttribute('camera', 'active', true);
 
 					//hide end screen

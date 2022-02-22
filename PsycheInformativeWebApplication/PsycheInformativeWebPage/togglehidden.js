@@ -43,7 +43,7 @@ AFRAME.registerComponent('togglehidden', {
 		var cameraOrbit = document.querySelector('#cameraCustomOrbit');
 		var cameraStatic = document.querySelector('#cameraStatic');
 
-		//pause, has no effect
+		//pause
 		//cameraOrbit.pause();
 
 		//function calling

@@ -36,13 +36,13 @@ Psyche WebXR Informative WebPage
     <script type="text/javascript" src="togglehidden.js"></script>
     <script type="text/javascript" src="togglemodel.js"></script>
     <script type="text/javascript" src="navigate-on-click.js"></script>
+    <script type="text/javascript" src="textinfohandler.js"></script>
 </head>
 <!--Body: content of document-->
 <body>
 
-    <div id="container"></div>
-
-    <div id="modal2" class="modal2" style="display: None">>
+    <!--Example Modal overlay
+    <div id="modal2" class="modal2" style="display: None">
         <div class="modal_content">
             <h1 id="modalTitle">Psyche Exploratory Game</h1>
             <p id="modalDescription">Explore the asteroid Psyche. Tap circles on the asteroid's surface to learn more about Psyche.</p>
@@ -55,12 +55,34 @@ Psyche WebXR Informative WebPage
                 </a>
             </div>
         </div>
-    </div>
-
+    </div>-->
+    <!--
+    Psyche is the name of an asteroid orbiting the Sun between Mars and Jupiter and the name of a NASA space mission to visit that asteroid."
+    The asteroid Psyche consist largely of metal from the core of a planetesimal, one of the building blocks of the Sun’s planetary system. At Psyche scientists will explore, for the first time ever, a world made not of rock or ice, but rich in metal."
+    Deep within the terrestrial planets, including Earth, scientists infer the presence of metallic cores, but these lie unreachably far below the planets’ rocky mantles and crusts. The asteroid Psyche offers a unique window into these building blocks of planet formation and the opportunity to investigate a previously unexplored type of world."
+     -->
+    <!-- HTML item
     <div style="width: 100%; height: 100%; position: fixed; left: 0; top: 0; z-index: -1; overflow: hidden; display: None">
         <div id="htmlElement" style="background: #F8F8F8; color: #333; font-size: 48px">Hello, HTML!</div>
-    </div>
+    </div>-->
 
+    <!-- -->
+
+    <div id="textInfoModal" class="modal2" style="display: None" onclick="toggleText()">
+        <div class="modal_content">
+            <p id="textInfoModalDescription">
+                Psyche is the name of an asteroid orbiting the Sun between Mars and Jupiter and the name of a NASA space mission to visit that asteroid.
+            </p>
+            <div style="width:100%;">
+                <p class="link" id="continueButton">
+                    Continue
+                </p>
+                <p class="link" id="pointsfound" style="margin-left: 2rem">
+                    Points found: 0/3
+                </p>
+            </div>
+        </div>
+    </div>
 
     <!--HTML text-->
     <div style="font-family:verdana" ;>
@@ -90,8 +112,8 @@ Psyche WebXR Informative WebPage
             </a-assets>
 
             <!--
-    <a-entity geometry="primitive: plane" material="shader: html; target: #htmlElement"></a-entity>
-    -->
+            <a-entity geometry="primitive: plane" material="shader: html; target: #htmlElement"></a-entity>
+            -->
             <!-- Ambient Light -->
             <a-entity light="type: ambient; color: #ffffff ; intensity: 1.0"></a-entity>
 
@@ -115,9 +137,9 @@ Psyche WebXR Informative WebPage
                       data-raycastable></a-entity>
 
             <!-- Text: "Psyche is the name of an asteroid orbiting the Sun between Mars and Jupiter and the name of a NASA space mission to visit that asteroid.
-    Psyche is the first mission to a world likely made largely of metal rather than rock or ice.
-    What gives asteroid Psyche great scientific interest is that it is likely rich in metal. It may consist largely of metal from the core of a planetesimal, one of the building blocks of the Sun’s planetary system.
-    At Psyche scientists will explore, for the first time ever, a world made not of rock or ice, but rich in metal."-->
+            Psyche is the first mission to a world likely made largely of metal rather than rock or ice.
+            What gives asteroid Psyche great scientific interest is that it is likely rich in metal. It may consist largely of metal from the core of a planetesimal, one of the building blocks of the Sun’s planetary system.
+            At Psyche scientists will explore, for the first time ever, a world made not of rock or ice, but rich in metal."-->
             <a-plane id="textFrame"
                      position="0 13.8 0"
                      rotation="0 0 0"
@@ -289,11 +311,11 @@ Psyche WebXR Informative WebPage
                     line-height="72.5"
                     opacity="0.0"></a-text>
             <!--<a-plane id="textFrameInfoBG2"
-    position="4.5 0.3 -5.75"
-    rotation="-25 105 0"
-    width="5.5"
-    height="2.75"
-    color="black"></a-plane>-->
+            position="4.5 0.3 -5.75"
+            rotation="-25 105 0"
+            width="5.5"
+            height="2.75"
+            color="black"></a-plane>-->
             <a-text id="textFrameInfo3"
                     value="Deep within the terrestrial planets, including Earth, scientists infer the presence of metallic cores, but these lie unreachably far below the planets’ rocky mantles and crusts. The asteroid Psyche offers a unique window into these building blocks of planet formation and the opportunity to investigate a previously unexplored type of world."
                     geometry="primitive: plane"
@@ -307,11 +329,11 @@ Psyche WebXR Informative WebPage
                     line-height="72.5"
                     opacity="0.0"></a-text>
             <!--<a-plane id="textFrameInfoBG3"
-    position="-0.49 -3.99 -6.49"
-    rotation="5 180 0"
-    width="5.0"
-    height="3.0"
-    color="black"></a-plane>-->
+            position="-0.49 -3.99 -6.49"
+            rotation="5 180 0"
+            width="5.0"
+            height="3.0"
+            color="black"></a-plane>-->
             <!-- Credits-->
             <a-plane id="textFrame2"
                      position="0 3.8 0.1"
@@ -381,8 +403,8 @@ Psyche WebXR Informative WebPage
                     opacity="0.0"></a-text>
 
             <!-- Link to Psyche Website
-    <a-link href="https://psyche.asu.edu/" title="Psyche Website" ; image="#psycheWebsite"></a-link>
-        -->
+            <a-link href="https://psyche.asu.edu/" title="Psyche Website" ; image="#psycheWebsite"></a-link>
+                -->
             <a-entity id="psycheWebsiteLink"
                       material="src: #psycheWebsite;"
                       navigate-on-click="url: https://psyche.asu.edu/"
@@ -411,8 +433,7 @@ Psyche WebXR Informative WebPage
             <a-entity id="rig2" position="0 0 8">
                 <a-entity id="cameraStatic"
                           camera
-                          look-controls="magicWindowTrackingEnabled: false; enabled:false"
-                          ></a-entity>
+                          look-controls="magicWindowTrackingEnabled: false; enabled:false"></a-entity>
             </a-entity>
 
             <!-- Orbit Camera Rig -->
