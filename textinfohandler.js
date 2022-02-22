@@ -27,7 +27,7 @@
 
 		const sum = numberButtonsPressed.reduce((a, b) => a + b, 0)
 		//console.log(sum);
-		tally.innerHTML = "Points found: " + sum + "/3";
+		tally.innerHTML = "Points Found:<br> " + sum + "/3";
 		//console.log(tally.innerHTML);
 	}
 	else {
