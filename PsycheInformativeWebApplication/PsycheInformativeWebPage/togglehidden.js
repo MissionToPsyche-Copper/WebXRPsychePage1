@@ -39,6 +39,13 @@ AFRAME.registerComponent('togglehidden', {
 		//A-Frame Link
 		var afwl = sceneEl.querySelector('#aframeWebsiteLink');
 
+		//camera
+		var cameraOrbit = document.querySelector('#cameraCustomOrbit');
+		var cameraStatic = document.querySelector('#cameraStatic');
+
+		//pause, has no effect
+		//cameraOrbit.pause();
+
 		//function calling
 		var thComponent = document.querySelector('[togglehidden]').components.togglehidden;
 
@@ -59,6 +66,10 @@ AFRAME.registerComponent('togglehidden', {
 			thComponent.hideTextBoxes(tfi1, tfi2, tfi3);
 
 			if (toggle == 1) {
+				//change camera
+				cameraOrbit.setAttribute('camera', 'active', true);
+				//console.log(cameraOrbit.getAttribute('orbit-controls'));
+
 				//hide intro menu
 				thComponent.hideMenu(els);
 
@@ -73,6 +84,9 @@ AFRAME.registerComponent('togglehidden', {
 				thComponent.activateBlueInfoPoints(ib1, ib2, ib3);
 			}
 			else if (toggle == 0) {
+				//change camera
+				cameraStatic.setAttribute('camera', 'active', true);
+
 				//hide intro menu
 				thComponent.showMenu(els);
 
@@ -220,7 +234,7 @@ AFRAME.registerComponent('togglehidden', {
 
 	toggleTextBox: function (tfi) {
 		//toggle text box's visibility
-		console.log(tfi.getAttribute('opacity'));
+		//console.log(tfi.getAttribute('opacity'));
 		if (tfi.getAttribute('opacity') == '1') {
 			tfi.setAttribute('opacity', 0);
 		}

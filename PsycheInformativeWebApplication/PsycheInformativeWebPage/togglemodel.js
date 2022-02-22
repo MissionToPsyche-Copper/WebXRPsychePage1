@@ -40,11 +40,15 @@ AFRAME.registerComponent('togglemodel', {
 		//A-Frame Link
 		var afwl = sceneEl.querySelector('#aframeWebsiteLink');
 
+		//camera
+		var cameraOrbit = document.querySelector('#cameraCustomOrbit');
+		var cameraStatic = document.querySelector('#cameraStatic');
+
 		//function calling
 		var thComponent = document.querySelector('[togglehidden]').components.togglehidden;
 
 		//test function
-		thComponent.qux();
+		//thComponent.qux();
 
 		//Give component a function
 		this.toggleModel = function () {
@@ -101,6 +105,9 @@ AFRAME.registerComponent('togglemodel', {
 				thComponent.hideTextBoxes(tfi1, tfi2, tfi3);
 
 				if (toggle2 == 0) {
+					//change camera
+					cameraStatic.setAttribute('camera', 'active', true);
+
 					//show end screen
 					thComponent.showMenu(els2);
 					thComponent.showLinks(pwl, afwl);
@@ -118,6 +125,9 @@ AFRAME.registerComponent('togglemodel', {
 					tfi1.setAttribute('position', { x: -4.575, y: -5.25, z: -0.25 });
 				}
 				else if (toggle2 == 1) {
+					//change camera
+					cameraOrbit.setAttribute('camera', 'active', true);
+
 					//hide end screen
 					thComponent.hideMenu(els2);
 					thComponent.hideLinks(pwl, afwl);

@@ -12,7 +12,7 @@ AFRAME.registerComponent('navigate-on-click', {
 
 		//Get this element
 		var el = this.el;
-		console.log(el);
+		//console.log(el);
 
 		//get this element's link
 		var data = this.data;

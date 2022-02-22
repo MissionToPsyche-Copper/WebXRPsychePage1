@@ -16,6 +16,9 @@ Psyche WebXR Informative WebPage
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/jpg" href="assets/favicon.ico" />
 
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="infoBoxesCSS.css" />
+
     <!--Aframe -->
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
 
@@ -26,6 +29,9 @@ Psyche WebXR Informative WebPage
     <!-- Aframe GUI -->
     <script src="https://rawgit.com/rdub80/aframe-gui/master/dist/aframe-gui.min.js"></script>
 
+    <!-- Aframe HTML -->
+    <script src="https://unpkg.com/aframe-html-shader@0.2.0/dist/aframe-html-shader.min.js"></script>
+
     <!--Javascript-->
     <script type="text/javascript" src="togglehidden.js"></script>
     <script type="text/javascript" src="togglemodel.js"></script>
@@ -33,8 +39,31 @@ Psyche WebXR Informative WebPage
 </head>
 <!--Body: content of document-->
 <body>
+
+    <div id="container"></div>
+
+    <div id="modal2" class="modal2" style="display: None">>
+        <div class="modal_content">
+            <h1 id="modalTitle">Psyche Exploratory Game</h1>
+            <p id="modalDescription">Explore the asteroid Psyche. Tap circles on the asteroid's surface to learn more about Psyche.</p>
+            <div style="width:100%;">
+                <a class="link" id="ViewButton">
+                    <div>View</div>
+                </a>
+                <a class="link" id="NextButton">
+                    <div>Next</div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div style="width: 100%; height: 100%; position: fixed; left: 0; top: 0; z-index: -1; overflow: hidden; display: None">
+        <div id="htmlElement" style="background: #F8F8F8; color: #333; font-size: 48px">Hello, HTML!</div>
+    </div>
+
+
     <!--HTML text-->
-    <div style="font-family:verdana";>
+    <div style="font-family:verdana" ;>
 
         <!--Aframe Scene (with Raycast for interaction)-->
         <a-scene id="ascene" cursor="rayOrigin: mouse; fuseTimeout: 0" raycaster="objects: [data-raycastable]">
@@ -46,10 +75,7 @@ Psyche WebXR Informative WebPage
                               src="assets/PsycheAsteroid1.glb"
                               crossorigin="anonymous"></a-asset-item>
 
-                <!-- Images
-        <img id="psycheAsteroidImg"
-         src="assets/temp2.png"-->
-                crossorigin="anonymous" />
+                <!-- Images -->
                 <img id="bgImg"
                      src="assets/2k_stars_milky_way.jpg"
                      crossorigin="anonymous" />
@@ -63,6 +89,9 @@ Psyche WebXR Informative WebPage
                          material="color: white; shader: flat; opacity: 1.0; transparent: true"></a-mixin>
             </a-assets>
 
+            <!--
+    <a-entity geometry="primitive: plane" material="shader: html; target: #htmlElement"></a-entity>
+    -->
             <!-- Ambient Light -->
             <a-entity light="type: ambient; color: #ffffff ; intensity: 1.0"></a-entity>
 
@@ -260,11 +289,11 @@ Psyche WebXR Informative WebPage
                     line-height="72.5"
                     opacity="0.0"></a-text>
             <!--<a-plane id="textFrameInfoBG2"
-                     position="4.5 0.3 -5.75"
-                     rotation="-25 105 0"
-                     width="5.5"
-                     height="2.75"
-                     color="black"></a-plane>-->
+    position="4.5 0.3 -5.75"
+    rotation="-25 105 0"
+    width="5.5"
+    height="2.75"
+    color="black"></a-plane>-->
             <a-text id="textFrameInfo3"
                     value="Deep within the terrestrial planets, including Earth, scientists infer the presence of metallic cores, but these lie unreachably far below the planets’ rocky mantles and crusts. The asteroid Psyche offers a unique window into these building blocks of planet formation and the opportunity to investigate a previously unexplored type of world."
                     geometry="primitive: plane"
@@ -278,12 +307,11 @@ Psyche WebXR Informative WebPage
                     line-height="72.5"
                     opacity="0.0"></a-text>
             <!--<a-plane id="textFrameInfoBG3"
-                     position="-0.49 -3.99 -6.49"
-                     rotation="5 180 0"
-                     width="5.0"
-                     height="3.0"
-                     color="black"></a-plane>-->
-
+    position="-0.49 -3.99 -6.49"
+    rotation="5 180 0"
+    width="5.0"
+    height="3.0"
+    color="black"></a-plane>-->
             <!-- Credits-->
             <a-plane id="textFrame2"
                      position="0 3.8 0.1"
@@ -379,25 +407,41 @@ Psyche WebXR Informative WebPage
             <!-- Skybox -->
             <a-sky src="#bgImg"></a-sky>
 
+            <!-- Static Camera -->
+            <a-entity id="rig2" position="0 0 8">
+                <a-entity id="cameraStatic"
+                          camera
+                          look-controls="magicWindowTrackingEnabled: false; enabled:false"
+                          ></a-entity>
+            </a-entity>
+
             <!-- Orbit Camera Rig -->
             <a-entity id="rig">
                 <a-entity id="cameraCustomOrbit"
                           camera
                           look-controls="magicWindowTrackingEnabled: false"
                           orbit-controls="
+                          autoRotate: false;
+                          autoRotateSpeed: 0.25;
+                          dampingFactor: 0.075;
                           enabled: true;
-                          enableRotate: true;
                           enableDamping: true;
-                          enableKeys: true;
+                          enableKeys: false;
                           enablePan: true;
+                          enableRotate: true;
                           enableZoom: true;
-                          maxPolarAngle: 180;
-                          target: 0 0 -4;
+                          initialPosition: 0 0 8;
                           minDistance: 5;
                           maxDistance: 75;
-                          initialPosition: 0 0 8;"></a-entity>
+                          maxPolarAngle: 180;
+                          target: 0 0 -4;">
+                </a-entity>
             </a-entity>
         </a-scene>
+    </div>
+
+
+
 </body>
 </html>
 
