@@ -12,6 +12,7 @@
     padding: 0;
     width: 90%;
     opacity: 0.8;
+    transition: opacity 0.75s, visibility 0.75s;
 }
 
     .modal2.one {
@@ -59,18 +60,78 @@
     .modal_content > a {
     }
 
+.modalgui {
+    display: flex;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    background-color: #000000;
+    margin: auto;
+    padding: 0;
+    width: 90%;
+    opacity: 0.8;
+}
+
+    .modalgui.one {
+        transform: scaleY(.01) scaleX(0) translate(-50%, -50%);
+        animation: unfoldIn 1s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
+    }
+
+        .modalgui.one > .modal_content {
+            transform: scale(0);
+            animation: zoomIn 0.9s 0.4s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
+        }
+
+    .modalgui.out {
+        transform: scale(1) translate(-50%, -50%);
+        animation: unfoldOut 1s .3s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
+    }
+
+        .modalgui.out > .modal_content {
+            animation: zoomOut .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
+        }
+
+.modalgui_content {
+    font-family: "Roboto",sans-serif;
+    padding: 1.5rem 2rem;
+}
+
+    .modalgui_content > h1 {
+        margin: auto;
+        color: #A53F5B;
+        text-transform: uppercase;
+        /* font-size: xx-large;*/
+        font-size: small;
+    }
+
+    .modalgui_content > p {
+        margin: auto;
+        color: white;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        /* font-size: x-large;*/
+        font-size: small;
+        font-family: "Helvetica", Arial, sans-serif;
+    }
+
+    .modalgui_content > a {
+    }
+
 .link {
     position: relative;
     display: inline-block;
     padding: 0 40px 15px 0;
     font-family: "RobotoMono",sans-serif;
-    /* font-size: x-large;*/ 
+    /* font-size: x-large;*/
     font-size: small;
     letter-spacing: 1px;
     color: #F9A000;
     text-decoration: none;
     overflow: hidden;
     width: 30%;
+    white-space: nowrap;
 }
 
     .link::after {

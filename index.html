@@ -65,10 +65,8 @@ Psyche WebXR Informative WebPage
     <div style="width: 100%; height: 100%; position: fixed; left: 0; top: 0; z-index: -1; overflow: hidden; display: None">
         <div id="htmlElement" style="background: #F8F8F8; color: #333; font-size: 48px">Hello, HTML!</div>
     </div>-->
-
     <!-- -->
-
-    <div id="textInfoModal" class="modal2" style="display: None" onclick="toggleText()">
+    <div id="textInfoModal" class="modal2" style="visibility: hidden; opacity: 0.0" onclick="toggleText()">
         <div class="modal_content">
             <p id="textInfoModalDescription">
                 Psyche is the name of an asteroid orbiting the Sun between Mars and Jupiter and the name of a NASA space mission to visit that asteroid.
@@ -77,10 +75,25 @@ Psyche WebXR Informative WebPage
                 <p class="link" id="continueButton">
                     Continue
                 </p>
-                <p class="link" id="pointsfound"">
+                <p class="link" id="pointsfound">
                     Points found: 0/3
                 </p>
             </div>
+        </div>
+    </div>
+
+    <div id="guiModal" class="modalgui" style="visibility: hidden; opacity: 0.0">
+        <div class="modalgui_content">
+            <div style="width:100%;">
+                <p class="link" id="introButton">
+                    Begin
+                </p>
+            </div>
+            <!--<div style="width:100%;">
+                <p class="link" id="endButton">
+                    Credits
+                </p>
+            </div>-->
         </div>
     </div>
 
@@ -240,7 +253,7 @@ Psyche WebXR Informative WebPage
 
             <!-- Info Buttons -->
             <a-gui-icon-button id="interactiveButton1"
-                               height="0.5"
+                               height="0.6"
                                icon="F0de"
                                icon-active="false"
                                icon-font="fonts/fa-regular-400.ttf"
@@ -255,7 +268,7 @@ Psyche WebXR Informative WebPage
                                margin="0 0 0.05 0">
             </a-gui-icon-button>
             <a-gui-icon-button id="interactiveButton2"
-                               height="0.5"
+                               height="0.6"
                                icon="F0de"
                                icon-active="false"
                                icon-font="fonts/fa-regular-400.ttf"
@@ -270,7 +283,7 @@ Psyche WebXR Informative WebPage
                                margin="0 0 0.05 0">
             </a-gui-icon-button>
             <a-gui-icon-button id="interactiveButton3"
-                               height="0.5"
+                               height="0.6"
                                icon="F0de"
                                icon-active="false"
                                icon-font="fonts/fa-regular-400.ttf"
@@ -369,7 +382,7 @@ Psyche WebXR Informative WebPage
                      width="7.5"
                      height="7.5"
                      color="#000000"
-                     opacity="0.="></a-plane>
+                     opacity="0.0"></a-plane>
             <a-text id="textFrame2"
                     value="Credits"
                     geometry="primitive: plane"

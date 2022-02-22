@@ -109,6 +109,7 @@ AFRAME.registerComponent('togglemodel', {
 
 				//hide text boxes
 				thComponent.hideTextBoxes(tfi1, tfi2, tfi3);
+				toggleText();
 
 				if (toggle2 == 0) {
 					//change camera
@@ -130,6 +131,8 @@ AFRAME.registerComponent('togglemodel', {
 
 					//weird opacity overlay issue, so move text box while menu active
 					tfi1.setAttribute('position', { x: -4.575, y: -5.25, z: -0.25 });
+
+					toggleText();
 				}
 				else if (toggle2 == 1) {
 					//change camera

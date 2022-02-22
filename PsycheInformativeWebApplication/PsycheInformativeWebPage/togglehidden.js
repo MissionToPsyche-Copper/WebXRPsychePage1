@@ -82,6 +82,8 @@ AFRAME.registerComponent('togglehidden', {
 
 				//activate blue information points
 				thComponent.activateBlueInfoPoints(ib1, ib2, ib3);
+
+				toggleText();
 			}
 			else if (toggle == 0) {
 				//change camera
@@ -99,6 +101,8 @@ AFRAME.registerComponent('togglehidden', {
 
 				//hide blue points while menu active
 				thComponent.disableBlueInfoPoints(ib1, ib2, ib3);
+
+				toggleText();
 			}
 
 			/*console.log("toggle");
