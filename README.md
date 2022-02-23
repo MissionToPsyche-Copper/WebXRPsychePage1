@@ -1,7 +1,8 @@
 # WebXRPsychePage1
-Experience Name: Psyche Exploratory Game
+Experience Name: Psyche Exploration XR Webpage
 Capstone Student: Micah Schmidt
 Capstone Class: CSE 485/486 Capstone
+Date: Fall 2021/Spring 2022
 Sponsor: Cassie Bowman
 
 Project Summary:
@@ -9,7 +10,7 @@ Project Summary:
     This webpage is a minigame to allow the user to view and explore the asteroid Psyche. The user can rotate the camera around the asteroid and discover blue points of interest to view more about Psyche.
 
 Development Details:
-    The project was made using WebXR on the Aframe framework. Aframe is a framework for creating extended reality web applications.
+    The project was made using WebXR on the AFrame framework. AFrame is a framework for creating extended reality web applications.
 
 Frameworks and packages Used:
     Aframe: https://aframe.io/
@@ -17,7 +18,7 @@ Frameworks and packages Used:
     Aframe-gui: https://www.npmjs.com/package/aframe-gui
 
 Running the app:
-    The experience starts at the index.html file. This is the page the user should first be redirected to.
+    The experience starts at the index.html file. This is the page the user should first be redirected to. All accompanied JS and CSS files are required, as well are the assets and fonts folders.
 
 Screenshots:
 ![Start Screen](/screenshots/startscreen.png)

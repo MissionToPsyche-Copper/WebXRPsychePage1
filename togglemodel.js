@@ -27,21 +27,21 @@ AFRAME.registerComponent('togglemodel', {
 		//get all elements in text frame 2
 		var els2 = sceneEl.querySelectorAll('#textFrame2');
 
-		//Interactive Buttons
-		var ib1 = sceneEl.querySelector('#interactiveButton1');
-		var ib2 = sceneEl.querySelector('#interactiveButton2');
-		var ib3 = sceneEl.querySelector('#interactiveButton3');
-
-		//text boxes with info
-		var tfi1 = sceneEl.querySelector('#textFrameInfo1');
-		var tfi2 = sceneEl.querySelector('#textFrameInfo2');
-		var tfi3 = sceneEl.querySelector('#textFrameInfo3');
-
 		//get toggle button
 		var tb = sceneEl.querySelector('#toggleButton');
 
 		//credits button
 		var cb = sceneEl.querySelector('#creditsButton');
+
+		//Interactive Buttons
+		var ib1 = sceneEl.querySelector('#interactiveButton1');
+		var ib2 = sceneEl.querySelector('#interactiveButton2');
+		var ib3 = sceneEl.querySelector('#interactiveButton3');
+
+		//text boxes with info [unused]
+		var tfi1 = sceneEl.querySelector('#textFrameInfo1');
+		var tfi2 = sceneEl.querySelector('#textFrameInfo2');
+		var tfi3 = sceneEl.querySelector('#textFrameInfo3');
 
 		//NASA Psyche Link
 		var pwl = sceneEl.querySelector('#psycheWebsiteLink');

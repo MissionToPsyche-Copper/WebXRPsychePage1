@@ -8,6 +8,7 @@ This Javascript file handles hiding the beginning/credits text boxes, and holds 
 */
 //Global Vars
 var toggle = 1;
+var started = 0;
 
 //Register Aframe Component (all lower case)
 AFRAME.registerComponent('togglehidden', {
@@ -17,16 +18,13 @@ AFRAME.registerComponent('togglehidden', {
 		var sceneEl = document.querySelector('a-scene');
 
 		//get three.js scene
-		var obj = document.querySelector('a-scene').object3D;
+		//var obj = document.querySelector('a-scene').object3D;
 
 		//Get this element
-		var el = this.el;
+		//var el = this.el;
 
 		//get asteroid
-		var ast = sceneEl.querySelector('#threedpsyche');
-
-		//pause
-		ast.dispatchEvent(new CustomEvent('rotation-pause'));
+		//var ast = sceneEl.querySelector('#threedpsyche');
 
 		//get all elements in text frame
 		var els = sceneEl.querySelectorAll('#textFrame');
@@ -37,18 +35,22 @@ AFRAME.registerComponent('togglehidden', {
 		//get toggle button
 		var tb = sceneEl.querySelector('#toggleButton');
 
+		//credits button
+		var cb = sceneEl.querySelector('#creditsButton');
+
+		//pauseplay button
+		var ppbg = sceneEl.querySelector('#playPauseBG');
+		var ppb = sceneEl.querySelector('#playPauseButton');
+
 		//Interactive Buttons
 		var ib1 = sceneEl.querySelector('#interactiveButton1');
 		var ib2 = sceneEl.querySelector('#interactiveButton2');
 		var ib3 = sceneEl.querySelector('#interactiveButton3');
 
-		//text boxes with info
+		//text boxes with info [unused]
 		var tfi1 = sceneEl.querySelector('#textFrameInfo1');
 		var tfi2 = sceneEl.querySelector('#textFrameInfo2');
 		var tfi3 = sceneEl.querySelector('#textFrameInfo3');
-
-		//credits button
-		var cb = sceneEl.querySelector('#creditsButton');
 
 		//NASA Psyche Link
 		var pwl = sceneEl.querySelector('#psycheWebsiteLink');
@@ -80,6 +82,15 @@ AFRAME.registerComponent('togglehidden', {
 			thComponent.hideTextBoxes(tfi1, tfi2, tfi3);
 
 			if (toggle == 1) {
+				//show pauseplay button
+				if (started == 0) {
+					console.log("hit");
+					ppbg.setAttribute("opacity", 1.0);
+					//ppb.setAttribute("opacity", 1.0);
+					ppb.setAttribute('position', { x: -0.5, y: -2.475, z: 0.2});
+				}
+				started = 1;
+
 				//change camera
 				cameraOrbit.setAttribute('camera', 'active', true);
 
