@@ -1,6 +1,12 @@
-﻿body {
-}
-.modal2 {
+﻿/*
+Programmer: Micah Schmidt
+Program Description:
+Psyche WebXR Exploration XR WebPage
+The webpage is programmed with AFrame, a WebXR development framework.
+User can rotate the camera around the Psyche asteroid object and tap blue points to be presented with text boxes about Psyche.
+This stylesheet is responsible for styleing the information text boxes/modals.
+*/
+.modal {
     display: flex;
     position: fixed;
     top: 50%;
@@ -15,31 +21,31 @@
     transition: opacity 0.75s, visibility 0.75s;
 }
 
-    .modal2.one {
+    .modal.one {
         transform: scaleY(.01) scaleX(0) translate(-50%, -50%);
         animation: unfoldIn 1s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
     }
 
-        .modal2.one > .modal_content {
+        .modal.one > .modalcontent {
             transform: scale(0);
             animation: zoomIn 0.9s 0.4s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
         }
 
-    .modal2.out {
+    .modal.out {
         transform: scale(1) translate(-50%, -50%);
         animation: unfoldOut 1s .3s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
     }
 
-        .modal2.out > .modal_content {
+        .modal.out > .modalcontent {
             animation: zoomOut .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
         }
 
-.modal_content {
+.modalcontent {
     font-family: "Roboto",sans-serif;
     padding: 1.5rem 2rem;
 }
 
-    .modal_content > h1 {
+    .modalcontent > h1 {
         margin: auto;
         color: #A53F5B;
         text-transform: uppercase;
@@ -48,7 +54,7 @@
         line-height: 2em;
     }
 
-    .modal_content > p {
+    .modalcontent > p {
         margin: auto;
         color: white;
         padding-top: 1rem;
@@ -59,7 +65,7 @@
         font-family: "Helvetica", Arial, sans-serif;
     }
 
-    .modal_content > a {
+    .modalcontent > a {
     }
 
 .modalgui {
@@ -121,7 +127,7 @@
     .modalgui_content > a {
     }
 
-.link {
+.optionselect {
     position: relative;
     display: inline-block;
     padding: 0 40px 15px 0;
@@ -136,7 +142,7 @@
     white-space: nowrap;
 }
 
-    .link::after {
+    .optionselect::after {
         content: " ";
         position: absolute;
         right: 0;
@@ -151,7 +157,7 @@
         transition: transform 0.35s cubic-bezier(0.42, 0, 0.05, 0.99), -webkit-transform 0.35s cubic-bezier(0.42, 0, 0.05, 0.99), -o-transform 0.35s cubic-bezier(0.42, 0, 0.05, 0.99);
     }
 
-    .link > div {
+    .optionselect > div {
         display: flex;
         text-align: center;
         width: 100%;

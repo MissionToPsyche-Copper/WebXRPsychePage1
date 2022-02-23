@@ -1,18 +1,26 @@
-﻿function toggleText(optionSelected)
+﻿/*
+Programmer: Micah Schmidt
+Program Description:
+Psyche WebXR Exploration XR WebPage
+The webpage is programmed with AFrame, a WebXR development framework.
+User can rotate the camera around the Psyche asteroid object and tap blue points to be presented with text boxes about Psyche.
+This Javascript file handles the text boxes which appear when the user taps blue circles on the Psyche asteroid.
+*/
+
+function toggleText(optionSelected)
 {
 	//console.log("toggleText()");
 	var thismodal = document.querySelector('#textInfoModal');
 	var modaltext = document.querySelector('#textInfoModalDescription');
 	var tally = document.querySelector('#pointsfound');
 
-	console.log(thismodal.getAttribute("style"));
+	//console.log(thismodal.getAttribute("style"));
 	if (thismodal.getAttribute("style") == "visibility: hidden; opacity: 0.0") {
 
 		if (optionSelected == 1) {
 			modaltext.innerHTML = "Psyche is the name of an asteroid orbiting the Sun between Mars and Jupiter and the name of a NASA space mission to visit that asteroid.";
 
 			thismodal.setAttribute("style", "visibility: visible; opacity: 0.8");
-
 		}
 		else if (optionSelected == 2) {
 			modaltext.innerHTML = "The asteroid Psyche consist largely of metal from the core of a planetesimal, one of the building blocks of the Sun’s planetary system. At Psyche scientists will explore, for the first time ever, a world made not of rock or ice, but rich in metal.";

@@ -1,4 +1,13 @@
-﻿//Global Vars
+﻿/*
+Programmer: Micah Schmidt
+Program Description:
+Psyche WebXR Exploration XR WebPage
+The webpage is programmed with AFrame, a WebXR development framework.
+User can rotate the camera around the Psyche asteroid object and tap blue points to be presented with text boxes about Psyche.
+This Javascript file handles the function of the blue information points on the AFrame scene.
+*/
+
+//Global Vars
 var toggle2 = 0; //0: 2d; 1: 3d
 var numberButtonsPressed = [0, 0, 0]; //was each button pressed
 
@@ -46,6 +55,7 @@ AFRAME.registerComponent('togglemodel', {
 
 		//function calling
 		var thComponent = document.querySelector('[togglehidden]').components.togglehidden;
+		var tmComponent = document.querySelector('[togglemodel]').components.togglemodel;
 
 		//test function
 		//thComponent.qux();
@@ -99,7 +109,8 @@ AFRAME.registerComponent('togglemodel', {
 
 			//show end screen button after at least one blue point clicked
 			if (numberButtonsPressed[0] == 1 || numberButtonsPressed[1] == 1 || numberButtonsPressed[2] == 1) {
-				thComponent.showEndScreenButton(cb);
+				tmComponent.showEndScreenButton(cb);
+				//thComponent.showEndScreenButton(cb);
 			}
 
 			if (el.getAttribute('id') == 'creditsButton') {
@@ -175,5 +186,11 @@ AFRAME.registerComponent('togglemodel', {
 	//On Remove
 	remove: function () {
 		this.el.removeEventListener('click', this.toggleModel);
+	},
+
+	//Show credits button
+	showEndScreenButton: function (cb) {
+		//move credits button to position
+		cb.setAttribute('position', { x: 1.5, y: -3.5, z: 0.0 });
 	}
 });

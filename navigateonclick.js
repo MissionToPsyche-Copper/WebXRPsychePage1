@@ -1,5 +1,12 @@
-﻿//Register Aframe Component (all lower case)
-AFRAME.registerComponent('navigate-on-click', {
+﻿/* Program Description:
+Psyche WebXR Exploration XR WebPage
+The webpage is programmed with AFrame, a WebXR development framework.
+User can rotate the camera around the Psyche asteroid object and tap blue points to be presented with text boxes about Psyche.
+This Javascript file handles external links from inside the AFrame scene.
+ * */
+
+//Register Aframe Component (all lower case)
+AFRAME.registerComponent('navigateonclick', {
 	//Schema: user defined properties of the component
 	schema: {
 		url: { default: ''}

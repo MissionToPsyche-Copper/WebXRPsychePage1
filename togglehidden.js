@@ -1,4 +1,12 @@
-﻿//Global Vars
+﻿/*
+Programmer: Micah Schmidt
+Program Description:
+Psyche WebXR Exploration XR WebPage
+The webpage is programmed with AFrame, a WebXR development framework.
+User can rotate the camera around the Psyche asteroid object and tap blue points to be presented with text boxes about Psyche.
+This Javascript file handles hiding the beginning/credits text boxes, and holds various custom functions for use in the Aframe scene.
+*/
+//Global Vars
 var toggle = 1;
 
 //Register Aframe Component (all lower case)
@@ -13,6 +21,12 @@ AFRAME.registerComponent('togglehidden', {
 
 		//Get this element
 		var el = this.el;
+
+		//get asteroid
+		var ast = sceneEl.querySelector('#threedpsyche');
+
+		//pause
+		ast.dispatchEvent(new CustomEvent('rotation-pause'));
 
 		//get all elements in text frame
 		var els = sceneEl.querySelectorAll('#textFrame');
@@ -207,9 +221,9 @@ AFRAME.registerComponent('togglehidden', {
 	//Show blue information points
 	activateBlueInfoPoints: function (ib1, ib2, ib3) {
 		//move points to positions
-		ib1.setAttribute('position', { x: -1.25, y: -1.75, z: -1.5 });
-		ib2.setAttribute('position', { x: 3.75, y: 1.5, z: -5 });
-		ib3.setAttribute('position', { x: 0, y: -2.15, z: -6.15 });
+		ib1.setAttribute('position', { x: 0.5, y: 0.5, z: -1.0 });
+		ib2.setAttribute('position', { x: -1.25, y: 0.15, z: 0.75 });
+		ib3.setAttribute('position', { x: 0, y: -1.0, z: -0.65 });
 
 		//make clickable
 		ib1.setAttribute('data-raycastable');
@@ -247,11 +261,5 @@ AFRAME.registerComponent('togglehidden', {
 		else {
 			tfi.setAttribute('opacity', 1);
 		}
-	},
-
-	//Show credits button
-	showEndScreenButton: function (cb) {
-		//move credits button to position
-		cb.setAttribute('position', { x: 1.5, y: -3.5, z: 0.0 });
 	}
 });
