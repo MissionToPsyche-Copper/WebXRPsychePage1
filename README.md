@@ -18,9 +18,10 @@ Frameworks and packages Used:
     Aframe-gui: https://www.npmjs.com/package/aframe-gui
 
 Running the app:
-    The experience starts at the index.html file. This is the page the user should first be redirected to. All accompanied JS and CSS files are required, as well are the assets and fonts folders.
+    The experience starts at the index.html file. This is the page the user should first be redirected to. All accompanied JS and CSS files are required, as well are the assets and fonts folders. The folder "PsycheInformativeWebpage" is for development and can be ignored.
 
 Screenshots:
+
 ![Start Screen](/screenshots/startscreen.png)
 ![Rotation](/screenshots/rotation.png)
 ![Blue Points](/screenshots/bluepoint.png)
