@@ -1,0 +1,462 @@
+﻿<!DOCTYPE html>
+ <!--Indicates HTML Page-->
+<html>
+<!-- HyperText Markup Language -->
+<!-- 
+Programmer: Micah Schmidt
+Program Description:
+Psyche WebXR Exploration XR WebPage
+The webpage is programmed with AFrame, a WebXR development framework.
+User can rotate the camera around the Psyche asteroid object and tap blue points to be presented with text boxes about Psyche.
+This HTML file imports all necessary scripts, creates text modals, and holds the 3d scene.
+-->
+<!--Head: contains metadata for document-->
+<head>
+    <!-- Meta Data -->
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+
+    <!-- Title -->
+    <title>Psyche Exploration XR Webpage</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/jpg" href="assets/favicon.ico" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="infoBoxesStyle.css" />
+
+    <!--AFrame -->
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+
+    <!-- Orbit Camera -->
+    <script src="https://unpkg.com/aframe-orbit-controls@1.2.0/dist/aframe-orbit-controls.min.js"></script>
+
+    <!-- AFrame GUI -->
+    <script src="https://rawgit.com/rdub80/aframe-gui/master/dist/aframe-gui.min.js"></script>
+
+    <!--AFrame Augmented Reality
+        <script src="https://jeromeetienne.github.io/AR.js/aframe/build/aframe-ar.js"></script>
+    -->
+    <!--Javascript-->
+    <script type="text/javascript" src="togglehidden.js"></script>
+    <script type="text/javascript" src="togglemodel.js"></script>
+    <script type="text/javascript" src="playpauseorbit.js"></script>
+    <script type="text/javascript" src="navigateonclick.js"></script>
+    <script type="text/javascript" src="textinfohandler.js"></script>
+</head>
+<!--Body: content of document-->
+<body>
+    <!-- Modal for Text Boxes -->
+    <div id="textInfoModal" class="modal" style="visibility: hidden; opacity: 0.0" onclick="toggleText()">
+        <div class="modalcontent">
+            <p id="textInfoModalDescription">
+                Psyche is the name of an asteroid orbiting the Sun between Mars and Jupiter and the name of a NASA space mission to visit that asteroid.
+            </p>
+            <div style="width:100%;">
+                <p class="optionselect" id="continueButton">
+                    Continue
+                </p>
+                <p class="optionselect" id="pointsfound">
+                    Points Found: 0/3
+                </p>
+            </div>
+        </div>
+    </div>
+    <!-- GUI Modal Testing
+        <div id="guiModal" class="modalgui" style="visibility: hidden; opacity: 0.0">
+            <div class="modalguicontent">
+                <div style="width:100%;">
+                    <p class="optionselect" id="introButton">
+                        Begin
+                    </p>
+                </div>
+                <div style="width:100%;">
+                    <p class="optionselect" id="endButton">
+                        Credits
+                    </p>
+                </div>
+        </div>
+        </div>
+    -->
+
+    <!--HTML text-->
+    <div style="font-family:verdana" ;>
+        <!--AFrame Scene (with Raycast for interaction)-->
+        <a-scene id="ascene"
+                 cursor="rayOrigin: mouse; fuseTimeout: 0"
+                 raycaster="objects: [data-raycastable]"
+                 loading-screen="dotsColor: white; backgroundColor: #000029">
+            <!--Custom Assets-->
+            <!--This tag preloads objects, spawn them in with the a-entity tag later-->
+            <a-assets>
+                <!-- 3D Models -->
+                <a-asset-item id="psyche_model"
+                              src="assets/PsycheAsteroid1.glb"
+                              crossorigin="anonymous"></a-asset-item>
+
+                <!-- Images -->
+                <img id="bgImg"
+                     src="assets/2k_stars_milky_way.jpg"
+                     crossorigin="anonymous" />
+                <img id="psycheWebsite"
+                     src="assets/psyche.svg"
+                     corssorigin="anonymous" />
+                <img id="pauseSvg"
+                     src="assets/pause-button.svg"
+                     corssorigin="anonymous" />
+                <img id="playSvg"
+                     src="assets/play-button.svg"
+                     corssorigin="anonymous" />
+
+                <!-- Mixins: Preset Components that can be reused -->
+                <a-mixin id="imageFrame"
+                         geometry="primitive: plane;"
+                         material="color: white; shader: flat; opacity: 1.0; transparent: true"></a-mixin>
+            </a-assets>
+
+            <!-- Ambient Light -->
+            <a-entity light="type: ambient; color: #ffffff ; intensity: 1.0"></a-entity>
+
+            <!-- Directional Light -->
+            <a-light type="directional"
+                     position="5 5 5"
+                     rotation="0 0 0"
+                     target="#directionaltarget"
+                     intensity="1.0"
+                     color="#ffffff">
+                <a-entity id="directionaltarget"
+                          position="0 0 -4"></a-entity>
+            </a-light>
+
+            <!-- Asteroid 3D [remove startEvents, broken]-->
+            <a-entity gltf-model="#psyche_model"
+                      id="threedpsyche"
+                      position="0 0 -4"
+                      rotation="-75 175 0"
+                      scale="2.5 2.5 2.5"
+                      data-raycastable
+                      animation="
+                      property: rotation;
+                      pauseEvents: rotation-pause;
+                      resumeEvents: rotation-resume;
+                      to: -75 175 360;
+                      loop: true;
+                      dur: 50000;
+                      easing:linear;">
+                <!-- Info Buttons -->
+                <a-gui-icon-button id="interactiveButton1"
+                                   height="0.6"
+                                   icon="F0de"
+                                   icon-active="false"
+                                   icon-font="fonts/fa-regular-400.ttf"
+                                   togglemodel
+                                   position="1 0 -4"
+                                   rotation="-60 160 -60"
+                                   scale="0.5 0.5 0.5"
+                                   active-color="#191970"
+                                   hover-color="#0047AB"
+                                   border-color="black"
+                                   focus-color="black"
+                                   background-color="#0047AB"
+                                   margin="0 0 0.05 0">
+                </a-gui-icon-button>
+                <a-gui-icon-button id="interactiveButton2"
+                                   height="0.6"
+                                   icon="F0de"
+                                   icon-active="false"
+                                   icon-font="fonts/fa-regular-400.ttf"
+                                   togglemodel
+                                   position="1 0 -4"
+                                   rotation="-30 -45 00"
+                                   scale="0.5 0.5 0.5"
+                                   active-color="#191970"
+                                   hover-color="#0047AB"
+                                   border-color="black"
+                                   focus-color="black"
+                                   background-color="#0047AB"
+                                   margin="0 0 0.05 0">
+                </a-gui-icon-button>
+                <a-gui-icon-button id="interactiveButton3"
+                                   height="0.6"
+                                   icon="F0de"
+                                   icon-active="false"
+                                   icon-font="fonts/fa-regular-400.ttf"
+                                   togglemodel
+                                   position="1 0 -4"
+                                   rotation="120 0 0"
+                                   scale="0.5 0.5 0.5"
+                                   active-color="#191970"
+                                   hover-color="#0047AB"
+                                   border-color="black"
+                                   focus-color="black"
+                                   background-color="#0047AB"
+                                   margin="0 0 0.05 0">
+                </a-gui-icon-button>
+            </a-entity>
+
+            <!-- Introductory Text Box Construction -->
+            <a-plane id="textFrame"
+                     position="0 13.8 0"
+                     rotation="0 0 0"
+                     width="7.55"
+                     height="0.15"
+                     color="#000000"
+                     opacity="0.9"></a-plane>
+            <a-plane id="textFrame"
+                     position="0 6.2 0"
+                     rotation="0 0 0"
+                     width="7.55"
+                     height="0.15"
+                     color="#000000"
+                     opacity="0.9"></a-plane>
+            <a-plane id="textFrame"
+                     position="-3.8 10 0"
+                     rotation="0 0 90"
+                     width="7.85"
+                     height="0.15"
+                     color="#000000"
+                     opacity="0.9"></a-plane>
+            <a-plane id="textFrame"
+                     position="3.8 10 0"
+                     rotation="0 0 90"
+                     width="7.85"
+                     height="0.15"
+                     color="#000000"
+                     opacity="0.9"></a-plane>
+            <a-plane id="textFrame"
+                     position="0 10 0"
+                     rotation="0 0 0"
+                     width="7.5"
+                     height="7.5"
+                     color="#000000"
+                     opacity="0.8"></a-plane>
+            <!-- Introductory Text Box Content -->
+            <a-text id="textFrame"
+                    value="Psyche Exploration"
+                    geometry="primitive: plane"
+                    material="color:blue; visible: false"
+                    position="-3.0 12.75 0.05"
+                    width="12.0"
+                    color="white"
+                    align="left"
+                    opacity="0.9"></a-text>
+            <a-text id="textFrame"
+                    value="Explore the asteroid Psyche.\n Tap circles on the asteroid's surface to learn more about Psyche."
+                    geometry="primitive: plane"
+                    material="color:blue; visible: false"
+                    position="-3.0 9.75 0.05"
+                    width="5.0"
+                    color="white"
+                    align="left"
+                    letter-spacing="2.0"
+                    line-height="72.5"
+                    opacity="0.9"></a-text>
+
+            <!-- GUI -->
+            <a-plane id="playPauseBG"
+                     color="#664C00"
+                     position="-0.5 -2.475 0.19"
+                     scale="0.8 0.8 0.8"
+                     opacity="0.0"
+                     data-raycastable
+                     playpauseorbit
+                     ></a-plane>
+            <a-entity id="playPauseButton"
+                      material="src: #pauseSvg;"
+                      mixin="imageFrame"
+                      position="1 0 -4"
+                      scale="0.7 0.7 0.7"
+                      opacity="1.0"
+                      data-raycastable
+                      playpauseorbit
+                      ></a-entity>
+
+            <a-gui-button id="toggleButton"
+                          data-raycastable
+                          togglehidden
+                          position="1.5 7.5 0.0"
+                          width="2.5"
+                          height="0.7"
+                          base-depth="0.025"
+                          depth="0.1"
+                          gap="0.1"
+                          value="Begin"
+                          font-size="0.25"
+                          margin="0 0 0.05 0"
+                          font-color="black"
+                          active-color="#E3963E"
+                          hover-color="#FFBF00"
+                          border-color="black"
+                          focus-color="black"
+                          background-color="#FFBF00"
+                          bevel="true">
+            </a-gui-button>
+            <a-gui-button id="creditsButton"
+                          data-raycastable
+                          togglemodel
+                          position="-1 0 -4"
+                          width="2.5"
+                          height="0.7"
+                          base-depth="0.025"
+                          depth="0.1"
+                          gap="0.1"
+                          value="Credits"
+                          font-size="0.25"
+                          margin="0 0 0.05 0"
+                          font-color="black"
+                          active-color="#E3963E"
+                          hover-color="#FFBF00"
+                          border-color="black"
+                          focus-color="black"
+                          background-color="#FFBF00"
+                          bevel="true">
+            </a-gui-button>
+
+            <!-- Text boxes activated by blue points (OLD)-->
+            <a-text id="textFrameInfo1"
+                    position="1 0 -4"
+                    opacity="0.0"></a-text>
+            <a-text id="textFrameInfo2"
+                    position="1 0 -4"
+                    opacity="0.0"></a-text>
+            <a-text id="textFrameInfo3"
+                    position="1 0 -4"
+                    opacity="0.0"></a-text>
+
+            <!-- Credits Text Box Construction-->
+            <a-plane id="textFrame2"
+                     position="0 3.8 0.1"
+                     rotation="0 0 0"
+                     width="7.55"
+                     height="0.15"
+                     color="#000000"
+                     opacity="0.0"></a-plane>
+            <a-plane id="textFrame2"
+                     position="0 -3.8 0.1"
+                     rotation="0 0 0"
+                     width="7.55"
+                     height="0.15"
+                     color="#000000"
+                     opacity="0.0"></a-plane>
+            <a-plane id="textFrame2"
+                     position="-3.8 0 0.1"
+                     rotation="0 0 90"
+                     width="7.85"
+                     height="0.15"
+                     color="#000000"
+                     opacity="0.0"></a-plane>
+            <a-plane id="textFrame2"
+                     position="3.8 0 0.1"
+                     rotation="0 0 90"
+                     width="7.85"
+                     height="0.15"
+                     color="#000000"
+                     opacity="0.0"></a-plane>
+            <a-plane id="textFrame2"
+                     position="0 0 0.1"
+                     rotation="0 0 0"
+                     width="7.5"
+                     height="7.5"
+                     color="#000000"
+                     opacity="0.0"></a-plane>
+            <!-- Credits Text Box Content -->
+            <a-text id="textFrame2"
+                    value="Credits"
+                    geometry="primitive: plane"
+                    material="color:blue; visible: false"
+                    position="-3.0 2.75 0.1"
+                    width="12.0"
+                    color="white"
+                    align="left"
+                    opacity="0.0"></a-text>
+            <a-text id="textFrame2"
+                    value="NASA website:"
+                    geometry="primitive: plane"
+                    material="color:blue; visible: false"
+                    position="-3.0 1.25 0.1"
+                    width="5.0"
+                    color="white"
+                    align="left"
+                    letter-spacing="2.0"
+                    line-height="72.5"
+                    opacity="0.0"></a-text>
+            <a-text id="textFrame2"
+                    value="Made with A-Frame:"
+                    geometry="primitive: plane"
+                    material="color:blue; visible: false"
+                    position="-3.0 -0.25 0.1"
+                    width="5.0"
+                    color="white"
+                    align="left"
+                    letter-spacing="2.0"
+                    line-height="72.5"
+                    opacity="0.0"></a-text>
+            <a-text id="textFrame2"
+                    value="Programmer: Micah Schmidt"
+                    geometry="primitive: plane"
+                    material="color:blue; visible: false"
+                    position="-3.0 -1.25 0.1"
+                    width="5.0"
+                    color="white"
+                    align="left"
+                    letter-spacing="2.0"
+                    line-height="72.5"
+                    opacity="0.0"></a-text>
+
+            <!-- Link to Psyche Website -->
+            <a-entity id="psycheWebsiteLink"
+                      material="src: #psycheWebsite;"
+                      navigateonclick="url: https://psyche.asu.edu/"
+                      mixin="imageFrame"
+                      position="0 0 -4"
+                      scale="4.0 2.0 2.0"
+                      opacity="0.0"></a-entity>
+            <a-text id="aframeWebsiteLink"
+                    value="A-Frame"
+                    geometry="primitive: plane"
+                    material="color:blue; visible: false"
+                    navigateonclick="url: https://aframe.io/"
+                    position="-0.25 -0.25 0.2"
+                    scale="2.0 2.0 2.0"
+                    width="5.0"
+                    color="white"
+                    align="left"
+                    letter-spacing="2.0"
+                    line-height="72.5"
+                    opacity="0.0"></a-text>
+
+            <!-- Skybox -->
+            <a-sky src="#bgImg"></a-sky>
+
+            <!-- Static Camera -->
+            <a-entity id="rig2" position="0 0 8">
+                <a-entity id="cameraStatic"
+                          camera
+                          look-controls="magicWindowTrackingEnabled: false; enabled:false"></a-entity>
+            </a-entity>
+
+            <!-- Orbit Camera Rig -->
+            <a-entity id="rig">
+                <a-entity id="cameraCustomOrbit"
+                          camera
+                          look-controls="magicWindowTrackingEnabled: false"
+                          orbit-controls="
+                          autoRotate: false;
+                          autoRotateSpeed: 0.25;
+                          dampingFactor: 0.075;
+                          enabled: true;
+                          enableDamping: true;
+                          enableKeys: false;
+                          enablePan: true;
+                          enableRotate: true;
+                          enableZoom: true;
+                          initialPosition: 0 0 8;
+                          minDistance: 5;
+                          maxDistance: 75;
+                          maxPolarAngle: 180;
+                          target: 0 0 -4;">
+                </a-entity>
+            </a-entity>
+        </a-scene>
+    </div>
+</body>
+</html>
