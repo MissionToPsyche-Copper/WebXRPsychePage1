@@ -27,3 +27,9 @@ Screenshots:
 ![Blue Points](/screenshots/bluepoint.png)
 ![End Screen](/screenshots/endscreen.png)
 
+Small Improvements:
+    If time permits, I can research implementing the following:
+    1. Blue points change color when clicked for visual progress through experience.
+    2. Fade in Play Button and Credits Button rather than just appearing.
+    3. Redo blue point primitive and implement gui as modals.
+    4. Gyroscope/Augmented Reality toggle.
