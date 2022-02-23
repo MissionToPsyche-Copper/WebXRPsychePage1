@@ -32,4 +32,5 @@ Small Improvements:
     1. Blue points change color when clicked for visual progress through experience.
     2. Fade in Play Button and Credits Button rather than just appearing.
     3. Redo blue point primitive and implement gui as modals.
-    4. Gyroscope/Augmented Reality toggle.
+    4. Gyroscope/AR toggle.
+    5. Reward for clicking all blue points.
