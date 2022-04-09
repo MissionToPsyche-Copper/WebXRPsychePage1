@@ -58,6 +58,9 @@ AFRAME.registerComponent('togglehidden', {
 		//A-Frame Link
 		var afwl = sceneEl.querySelector('#aframeWebsiteLink');
 
+		//Disclaimer Link
+		var disl = sceneEl.querySelector('#disclaimerLink');
+
 		//camera
 		var cameraOrbit = document.querySelector('#cameraCustomOrbit');
 		var cameraStatic = document.querySelector('#cameraStatic');
@@ -75,7 +78,7 @@ AFRAME.registerComponent('togglehidden', {
 		this.toggleHide = function () {
 			//hide end screen menu
 			thComponent.hideMenu(els2);
-			thComponent.hideLinks(pwl, afwl);
+			thComponent.hideLinks(pwl, afwl, disl);
 			toggle2 = 0;
 
 			//hide text boxes
@@ -84,7 +87,7 @@ AFRAME.registerComponent('togglehidden', {
 			if (toggle == 1) {
 				//show pauseplay button
 				if (started == 0) {
-					console.log("hit");
+					//console.log("hit");
 					ppbg.setAttribute("opacity", 1.0);
 					//ppb.setAttribute("opacity", 1.0);
 					ppb.setAttribute('position', { x: -0.5, y: -2.475, z: 0.2});
@@ -209,17 +212,22 @@ AFRAME.registerComponent('togglehidden', {
 	},
 
 	//show links (associated with endscreen)
-	showLinks: function (pwl, afwl) {//hide psyche website link
+	showLinks: function (pwl, afwl, disl) {
+		//show psyche website link
 		pwl.setAttribute('position', { x: 1, y: 1.25, z: 0.2 });
 		pwl.setAttribute('data-raycastable');
 
-		//hide aframe website link
+		//show aframe website link
 		afwl.setAttribute('opacity', 1.0);
 		afwl.setAttribute('data-raycastable');
+
+		//show disclaimer link
+		disl.setAttribute('opacity', 1.0);
+		disl.setAttribute('data-raycastable');
 	},
 
 	//hide links (associated with endscreen)
-	hideLinks: function (pwl, afwl) {
+	hideLinks: function (pwl, afwl, disl) {
 		//hide psyche website link
 		pwl.setAttribute('position', { x: 0, y: 0, z: -4 });
 		pwl.removeAttribute('data-raycastable');
@@ -227,6 +235,12 @@ AFRAME.registerComponent('togglehidden', {
 		//hide aframe website link
 		afwl.setAttribute('opacity', 0.0);
 		afwl.removeAttribute('data-raycastable');
+
+		//hide disclaimer link
+		disl.setAttribute('opacity', 1.0);
+		disl.setAttribute('data-raycastable');
+		disl.setAttribute('opacity', 0.0);
+		disl.removeAttribute('data-raycastable');
 	},
 
 	//Show blue information points
