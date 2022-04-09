@@ -49,6 +49,9 @@ AFRAME.registerComponent('togglemodel', {
 		//A-Frame Link
 		var afwl = sceneEl.querySelector('#aframeWebsiteLink');
 
+		//Disclaimer Link
+		var disl = sceneEl.querySelector('#disclaimerLink');
+
 		//camera
 		var cameraOrbit = document.querySelector('#cameraCustomOrbit');
 		var cameraStatic = document.querySelector('#cameraStatic');
@@ -106,13 +109,10 @@ AFRAME.registerComponent('togglemodel', {
 				tfi1.setAttribute('opacity', 0.0);
 				tfi2.setAttribute('opacity', 0.0);
 			}
-			else if (el.getAttribute('id') == 'textFrame2') {
-				console.log("heyyyy");
-				//on click, toggle textbox
-				//thComponent.toggleTextBox(tfi3);
+			else if (el.getAttribute('id') == 'disclaimerLink') {
+				//on click, show disclaimer
 				toggleText(4);
 			}
-
 
 			//show end screen button after at least one blue point clicked
 			if (numberButtonsPressed[0] == 1 || numberButtonsPressed[1] == 1 || numberButtonsPressed[2] == 1) {
@@ -136,7 +136,7 @@ AFRAME.registerComponent('togglemodel', {
 
 					//show end screen
 					thComponent.showMenu(els2);
-					thComponent.showLinks(pwl, afwl);
+					thComponent.showLinks(pwl, afwl, disl);
 
 					//set toggle2 to 1
 					toggle2 = 1;
@@ -162,7 +162,7 @@ AFRAME.registerComponent('togglemodel', {
 
 					//hide end screen
 					thComponent.hideMenu(els2);
-					thComponent.hideLinks(pwl, afwl);
+					thComponent.hideLinks(pwl, afwl, disl);
 
 					//set toggle2 to 0
 					toggle2 = 0;

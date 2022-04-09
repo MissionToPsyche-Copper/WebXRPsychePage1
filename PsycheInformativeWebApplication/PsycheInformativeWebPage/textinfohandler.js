@@ -20,20 +20,28 @@ function toggleText(optionSelected)
 		if (optionSelected == 1) {
 			modaltext.innerHTML = "Psyche is the name of an asteroid orbiting the Sun between Mars and Jupiter and the name of a NASA space mission to visit that asteroid.";
 
+			modaltext.setAttribute("style", "font-size: small;");
+
 			thismodal.setAttribute("style", "visibility: visible; opacity: 0.8");
 		}
 		else if (optionSelected == 2) {
 			modaltext.innerHTML = "The asteroid Psyche consist largely of metal from the core of a planetesimal, one of the building blocks of the Sun’s planetary system. At Psyche scientists will explore, for the first time ever, a world made not of rock or ice, but rich in metal.";
+
+			modaltext.setAttribute("style", "font-size: small;");
 
 			thismodal.setAttribute("style", "visibility: visible; opacity: 0.8");
 		}
 		else if (optionSelected == 3) {
 			modaltext.innerHTML = "Deep within the terrestrial planets, including Earth, scientists infer the presence of metallic cores, but these lie unreachably far below the planets’ rocky mantles and crusts.The asteroid Psyche offers a unique window into these building blocks of planet formation and the opportunity to investigate a previously unexplored type of world.";
 
+			modaltext.setAttribute("style", "font-size: small;");
+
 			thismodal.setAttribute("style", "visibility: visible; opacity: 0.8");
 		}
 		else if (optionSelected == 4) {
 			modaltext.innerHTML = "This work was created in partial fulfillment of Arizona State University Capstone Course CSE 485/486. The work is a result of the Psyche Student Collaborations component of NASA’s Psyche Mission (https://psyche.asu.edu). “Psyche: A Journey to a Metal World” [Contract number NNM16AA09C] is part of the NASA Discovery Program mission to solar system targets. Trade names and trademarks of ASU and NASA are used in this work for identification only. Their usage does not constitute an official endorsement, either expressed or implied, by Arizona State University or National Aeronautics and Space Administration. The content is solely the responsibility of the authors and does not necessarily represent the official views of ASU or NASA.";
+
+			modaltext.setAttribute("style", "font-size: xx-small;");
 
 			thismodal.setAttribute("style", "visibility: visible; opacity: 0.8");
 		}
