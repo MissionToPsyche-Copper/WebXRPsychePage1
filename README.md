@@ -18,11 +18,19 @@ Frameworks and packages Used:
     Aframe-gui: https://www.npmjs.com/package/aframe-gui
 
 Running the app:
-    The experience starts at the index.html file. This is the page the user should first be redirected to. All accompanied JS and CSS files are required, as well are the assets and fonts folders.
+    The experience starts at the index.html file. This is the page the user should first be redirected to. All accompanied JS and CSS files are required, as well are the assets and fonts folders. The folder "PsycheInformativeWebpage" is for development and can be ignored.
 
 Screenshots:
+
 ![Start Screen](/screenshots/startscreen.png)
 ![Rotation](/screenshots/rotation.png)
 ![Blue Points](/screenshots/bluepoint.png)
 ![End Screen](/screenshots/endscreen.png)
 
+Small Improvements:
+    If time permits, I can research implementing the following:
+    1. Blue points change color when clicked for visual progress through experience.
+    2. Fade in Play Button and Credits Button rather than just appearing.
+    3. Redo blue point primitive and implement gui as modals.
+    4. Gyroscope/AR toggle.
+    5. Reward for clicking all blue points.
