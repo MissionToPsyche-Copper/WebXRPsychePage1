@@ -258,8 +258,7 @@ This HTML file imports all necessary scripts, creates text modals, and holds the
                      scale="0.8 0.8 0.8"
                      opacity="0.0"
                      data-raycastable
-                     playpauseorbit
-                     ></a-plane>
+                     playpauseorbit></a-plane>
             <a-entity id="playPauseButton"
                       material="src: #pauseSvg;"
                       mixin="imageFrame"
@@ -267,8 +266,7 @@ This HTML file imports all necessary scripts, creates text modals, and holds the
                       scale="0.7 0.7 0.7"
                       opacity="1.0"
                       data-raycastable
-                      playpauseorbit
-                      ></a-entity>
+                      playpauseorbit></a-entity>
 
             <a-gui-button id="toggleButton"
                           data-raycastable
@@ -401,6 +399,20 @@ This HTML file imports all necessary scripts, creates text modals, and holds the
                     letter-spacing="2.0"
                     line-height="72.5"
                     opacity="0.0"></a-text>
+            <a-text id="textFrame2"
+                    value="Disclaimer"
+                    geometry="primitive: plane"
+                    material="color:blue; visible: false"
+                    position="1.0 -1.25 0.1"
+                    width="5.0"
+                    color="white"
+                    align="left"
+                    letter-spacing="2.0"
+                    line-height="72.5"
+                    opacity="0.0"
+                    scale="1.5 1.5 1.5"
+                    data-raycastable
+                    togglemodel></a-text>
 
             <!-- Link to Psyche Website -->
             <a-entity id="psycheWebsiteLink"

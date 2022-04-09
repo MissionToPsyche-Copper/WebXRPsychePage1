@@ -106,6 +106,13 @@ AFRAME.registerComponent('togglemodel', {
 				tfi1.setAttribute('opacity', 0.0);
 				tfi2.setAttribute('opacity', 0.0);
 			}
+			else if (el.getAttribute('id') == 'textFrame2') {
+				console.log("heyyyy");
+				//on click, toggle textbox
+				//thComponent.toggleTextBox(tfi3);
+				toggleText(4);
+			}
+
 
 			//show end screen button after at least one blue point clicked
 			if (numberButtonsPressed[0] == 1 || numberButtonsPressed[1] == 1 || numberButtonsPressed[2] == 1) {
